@@ -749,7 +749,7 @@
   </div>
   <div class="nav-right">
     <button class="btn-pill accent" onclick="startGame()">▶ <span class="btn-text">Play Now</span></button>
-    <button class="btn-ghost" id="soundBtn" title="Sound">🔊</button>
+    <button class="btn-ghost" id="soundBtn" title="Toggle sound">🔊</button>
     <button class="btn-ghost" title="About" onclick="document.getElementById('helpModal').classList.add('open')">?</button>
   </div>
 </nav>
@@ -1113,7 +1113,10 @@
     const score  = colorScore(guess, target);
     roundData.push({ char: gameChars[round], guess, score });
     showFeedback(guess, target, score);
-    tone(score >= 7 ? 660 : 440);
+    // Three-tier audio feedback: great / ok / miss
+    if (score >= 8)      { tone(660, 0.12); setTimeout(() => tone(880, 0.15), 100); }
+    else if (score >= 5) { tone(520, 0.18); }
+    else                 { tone(280, 0.22); }
   }
 
   function showFeedback(guess, target, score) {
@@ -1201,14 +1204,17 @@
   // AUDIO
   // =============================================
   let actx = null;
-  function tone(freq = 440, dur = 0.1) {
+  function tone(freq = 440, dur = 0.18) {
     if (!soundOn) return;
     try {
       actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      // Some browsers start AudioContext in suspended state; resume on user gesture
+      if (actx.state === 'suspended') actx.resume();
       const o = actx.createOscillator(), g = actx.createGain();
       o.connect(g); g.connect(actx.destination);
-      o.frequency.value = freq; o.type = 'sine';
-      g.gain.setValueAtTime(0.1, actx.currentTime);
+      o.frequency.value = freq;
+      o.type = 'triangle'; // warmer than sine, more audible
+      g.gain.setValueAtTime(0.28, actx.currentTime);
       g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + dur);
       o.start(); o.stop(actx.currentTime + dur);
     } catch(e) {}
