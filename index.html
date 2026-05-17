@@ -7,7 +7,7 @@
   <meta name="description" content="Five iconic shades from pop culture. No hints. Just you, three sliders, and the color memory you never knew you had." />
   <meta property="og:title" content="TonTones · Your eyes never lie." />
   <meta property="og:description" content="Match 5 legendary colors from pop culture. Score 0–10. Share your results." />
-  <meta property="og:url" content="https://tontones.net" />
+  <meta property="og:url" content="https://toontones.net" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="TonTones · Color Memory Game" />
@@ -910,7 +910,7 @@
 
 <!-- ===== FOOTER ===== -->
 <footer>
-  <span><span class="f-brand">TonTones</span> · tontones.net</span>
+  <span><span class="f-brand">TonTones</span> · toontones.net</span>
   <span class="f-sep">|</span>
   <span>Built with obsession over color</span>
   <span class="f-sep">|</span>
@@ -924,7 +924,7 @@
   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
   </svg>
-  tontones.net
+  toontones.net
 </div>
 
 <!-- ===== TICKER ===== -->
@@ -971,7 +971,7 @@
     'Your eyes never lie — or do they?',
     'The rarest skill: color memory.',
     'Beat your own record.',
-    'tontones.net',
+    'toontones.net',
     'What shade is that, exactly?',
   ];
 
@@ -1229,7 +1229,7 @@
       const n = Math.round(r.score);
       return `${r.char.name.split(' ').slice(1).join(' ')}: ${'█'.repeat(n)}${'░'.repeat(10-n)} ${r.score.toFixed(1)}`;
     }).join('\n');
-    const text = `🎨 TonTones · ${new Date().toLocaleDateString()}\nColor Accuracy: ${avg.toFixed(2)}/10\n\n${bars}\n\ntontones.net`;
+    const text = `🎨 TonTones · ${new Date().toLocaleDateString()}\nColor Accuracy: ${avg.toFixed(2)}/10\n\n${bars}\n\ntoontones.net`;
     navigator.share ? navigator.share({ title: 'TonTones', text }).catch(() => copy(text)) : copy(text);
   }
 
