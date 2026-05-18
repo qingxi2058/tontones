@@ -668,11 +668,64 @@
 
     .result-actions .btn-again,
     .result-actions .btn-share,
-    .result-actions .btn-poster {
+    .result-actions .btn-poster,
+    .result-actions .btn-challenge {
       padding: 12px 12px;
       font-size: 13px;
       white-space: nowrap;
     }
+
+    .btn-challenge {
+      background: linear-gradient(135deg, #00e5ff 0%, #1B98E0 100%);
+      color: #0c0a1e;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 24px;
+      font-size: 14px; font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 7px;
+      box-shadow: 0 0 20px rgba(0,229,255,0.3);
+      transition: opacity var(--t), box-shadow var(--t);
+    }
+    .btn-challenge:hover { opacity: 0.88; box-shadow: 0 0 32px rgba(0,229,255,0.5); }
+
+    /* Challenge result banner */
+    .challenge-result {
+      margin: 0 0 16px 0;
+      padding: 14px 20px;
+      border-radius: 16px;
+      font-size: 14px; font-weight: 700;
+      text-align: center;
+      display: none;
+    }
+    .challenge-result.won {
+      background: rgba(200,255,0,0.15);
+      border: 1px solid rgba(200,255,0,0.4);
+      color: var(--lime);
+    }
+    .challenge-result.lost {
+      background: rgba(255,85,85,0.12);
+      border: 1px solid rgba(255,85,85,0.35);
+      color: #ff9090;
+    }
+
+    /* Challenge banner on game screen */
+    .challenge-banner {
+      display: none;
+      position: absolute;
+      top: 60px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,229,255,0.15);
+      border: 1px solid rgba(0,229,255,0.4);
+      border-radius: 20px;
+      padding: 7px 18px;
+      font-size: 13px; font-weight: 700;
+      color: #00e5ff;
+      white-space: nowrap;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .challenge-banner.active { display: block; }
 
     /* ===== FOOTER ===== */
     .seo-panels {
@@ -1025,6 +1078,9 @@
         <!-- Target color fill -->
         <div class="target-bg" id="targetBg"></div>
 
+        <!-- Challenge banner (shown when playing a challenge link) -->
+        <div class="challenge-banner" id="challengeBanner"></div>
+
         <!-- Top bar -->
         <div class="game-top">
           <div class="char-pill" id="charPill">Loading…</div>
@@ -1105,9 +1161,13 @@
 
         <div class="round-grid" id="roundGrid"></div>
 
+        <!-- Challenge result comparison (shown when finished a challenge) -->
+        <div class="challenge-result" id="challengeResult"></div>
+
         <hr class="divider" />
         <div class="result-actions">
           <button class="btn-again" id="btnAgain">↺ Try Again</button>
+          <button class="btn-challenge" id="btnChallenge">Challenge 🎯</button>
           <button class="btn-share" id="btnShare">Share Results ↗</button>
           <button class="btn-poster" id="btnPoster">Save Poster 🎨</button>
         </div>
@@ -1264,6 +1324,7 @@
   let H = 180, S = 70, L = 50;
   let round = 0, roundData = [], gameChars = [];
   let soundOn = true, activeStrip = null;
+  let isChallengeMode = false, challengeTargetScore = null;
 
   // =============================================
   // COLOR MATH
@@ -1372,8 +1433,16 @@
     return a;
   }
 
-  function startGame() {
-    gameChars = shuffle(PALETTE).slice(0, 5);
+  function startGame(challengeData = null) {
+    if (challengeData) {
+      gameChars = challengeData.indices.map(i => PALETTE[i]);
+      isChallengeMode = true;
+      challengeTargetScore = challengeData.score;
+    } else {
+      gameChars = shuffle(PALETTE).slice(0, 5);
+      isChallengeMode = false;
+      challengeTargetScore = null;
+    }
     round = 0; roundData = [];
     // Reset picker
     H = 180; S = 70; L = 50;
@@ -1382,6 +1451,16 @@
     setHandleX('lightHandle', 0.5);
     refreshPicker();
     hideFeedback();
+
+    // Show/hide challenge banner
+    const banner = document.getElementById('challengeBanner');
+    if (isChallengeMode) {
+      banner.textContent = `🎯 Beat ${challengeTargetScore.toFixed(2)} to win!`;
+      banner.classList.add('active');
+    } else {
+      banner.classList.remove('active');
+    }
+
     showScreen('screenGame');
     setupRound();
   }
@@ -1459,6 +1538,25 @@
       </div>
     `).join('');
 
+    // Show challenge result comparison if in challenge mode
+    const crEl = document.getElementById('challengeResult');
+    if (isChallengeMode && challengeTargetScore !== null) {
+      const diff = avg - challengeTargetScore;
+      if (diff > 0) {
+        crEl.className = 'challenge-result won';
+        crEl.textContent = `🎉 You beat it! ${avg.toFixed(2)} vs their ${challengeTargetScore.toFixed(2)} — ${diff.toFixed(2)} pts ahead!`;
+      } else if (diff === 0) {
+        crEl.className = 'challenge-result won';
+        crEl.textContent = `🤝 Exact tie! You both scored ${avg.toFixed(2)}. Incredible.`;
+      } else {
+        crEl.className = 'challenge-result lost';
+        crEl.textContent = `😤 So close! You: ${avg.toFixed(2)} · Their score: ${challengeTargetScore.toFixed(2)} — just ${Math.abs(diff).toFixed(2)} pts away!`;
+      }
+      crEl.style.display = 'block';
+    } else {
+      crEl.style.display = 'none';
+    }
+
     saveScore(avg);
     showScreen('screenResult');
   }
@@ -1525,6 +1623,37 @@
       b.textContent = '✅ Copied!';
       setTimeout(() => b.textContent = 'Share Results ↗', 2000);
     });
+  }
+
+  // =============================================
+  // CHALLENGE LINK
+  // =============================================
+  function generateChallengeLink() {
+    const avg = roundData.reduce((s, r) => s + r.score, 0) / roundData.length;
+    const indices = gameChars.map(c => PALETTE.indexOf(c));
+    const base = location.origin + location.pathname;
+    return `${base}?c=${indices.join('')}&s=${avg.toFixed(2)}`;
+  }
+
+  function copyChallenge() {
+    const link = generateChallengeLink();
+    navigator.clipboard.writeText(link).then(() => {
+      const b = document.getElementById('btnChallenge');
+      b.textContent = '✅ Link copied!';
+      setTimeout(() => { b.textContent = 'Challenge 🎯'; }, 2500);
+    });
+  }
+
+  function parseChallengeFromURL() {
+    const params = new URLSearchParams(location.search);
+    const c = params.get('c');
+    const s = params.get('s');
+    if (!c || !s) return null;
+    const indices = c.split('').map(Number);
+    if (indices.length !== 5 || indices.some(i => i < 0 || i >= PALETTE.length || isNaN(i))) return null;
+    const score = parseFloat(s);
+    if (isNaN(score) || score < 0 || score > 10) return null;
+    return { indices, score };
   }
 
   // =============================================
@@ -1668,6 +1797,7 @@
   document.getElementById('btnNext').onclick   = () => { tone(440, 0.08); nextRound(); };
   document.getElementById('btnAgain').onclick  = () => { tone(523, 0.12); startGame(); };
   document.getElementById('btnShare').onclick  = shareResults;
+  document.getElementById('btnChallenge').onclick = copyChallenge;
   document.getElementById('btnPoster').onclick = savePoster;
   document.getElementById('btnHelp').onclick   = () => document.getElementById('helpModal').classList.add('open');
   document.getElementById('btnModalClose').onclick = () => document.getElementById('helpModal').classList.remove('open');
@@ -1692,6 +1822,22 @@
   buildTicker();
   refreshScores();
   refreshPicker();
+
+  // Auto-start challenge if URL contains challenge params
+  const _challenge = parseChallengeFromURL();
+  if (_challenge) {
+    // Show a brief intro overlay message, then start
+    const btn = document.getElementById('btnStart');
+    btn.textContent = `▶ Beat ${_challenge.score.toFixed(2)}`;
+    const sub = document.querySelector('.scores-mini');
+    if (sub) {
+      const msg = document.createElement('div');
+      msg.style.cssText = 'margin-top:12px;padding:10px 16px;background:rgba(0,229,255,0.12);border:1px solid rgba(0,229,255,0.35);border-radius:14px;font-size:13px;font-weight:700;color:#00e5ff;text-align:center;';
+      msg.textContent = `🎯 You've been challenged! Beat a score of ${_challenge.score.toFixed(2)}`;
+      sub.after(msg);
+    }
+    btn.onclick = () => { tone(523, 0.12); startGame(_challenge); };
+  }
 </script>
 </body>
 </html>
