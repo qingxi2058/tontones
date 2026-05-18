@@ -71,6 +71,22 @@
       },
       {
         "@type": "Question",
+        "name": "What do the HSL sliders mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "H controls the color family, S controls how vivid or muted the color is, and L controls how bright or dark the final shade feels."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I share my TonTones score?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. After a five-shade round, TonTones creates share text and platform buttons so players can compare scores with friends."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Do I need an account?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -849,6 +865,94 @@
       border: 1px solid rgba(255,255,255,0.11);
     }
 
+    .link-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .link-card {
+      display: grid;
+      gap: 5px;
+      min-height: 92px;
+      padding: 14px;
+      text-align: left;
+      color: var(--white);
+      text-decoration: none;
+      font: inherit;
+      cursor: pointer;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 18px;
+      transition: background var(--t), border-color var(--t), transform var(--t);
+    }
+
+    .link-card:hover {
+      transform: translateY(-1px);
+      background: rgba(200,255,0,0.10);
+      border-color: rgba(200,255,0,0.24);
+    }
+
+    .link-card span {
+      color: var(--lime);
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .link-card strong {
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .faq-list details {
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .faq-list summary {
+      cursor: pointer;
+      padding: 13px 15px;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 800;
+      list-style: none;
+    }
+
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-list summary::before {
+      content: "+";
+      color: var(--lime);
+      display: inline-block;
+      width: 18px;
+      font-weight: 900;
+    }
+
+    .faq-list details[open] summary::before {
+      content: "–";
+    }
+
+    .faq-list p {
+      padding: 0 15px 14px 33px;
+      margin: 0;
+      color: var(--body);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
     .seo-card-link {
       color: var(--lime);
       text-decoration: none;
@@ -1004,6 +1108,10 @@
 
       .seo-grid,
       .seo-wide {
+        grid-template-columns: 1fr;
+      }
+
+      .link-cards {
         grid-template-columns: 1fr;
       }
 
@@ -1250,32 +1358,76 @@
   </div>
 
   <div class="seo-grid">
-    <article class="seo-panel">
+    <article class="seo-panel" id="how-it-plays">
       <span class="seo-kicker">How it plays</span>
       <h3>Match five shades from memory</h3>
       <p>Each round shows a target shade and asks you to rebuild it with hue, saturation, and lightness. The final score shows how accurate your eyes were.</p>
     </article>
-    <article class="seo-panel">
+    <article class="seo-panel" id="score-guide">
       <span class="seo-kicker">Why it works</span>
       <h3>Simple idea, strong replay pull</h3>
       <p>A good color memory game does not need a long tutorial. The question is immediate: do you actually remember the shade, or just the feeling of it?</p>
     </article>
-    <article class="seo-panel">
+    <article class="seo-panel" id="trend-fit">
       <span class="seo-kicker">Same neighborhood</span>
       <h3>Close to the trend, not a copy</h3>
       <p>People searching for a toon tone inspired game, a free color guessing game, or an HSL color matching challenge can understand TonTones quickly.</p>
     </article>
   </div>
 
-  <div class="seo-panel">
+  <div class="seo-panel" id="explore">
+    <span class="seo-kicker">Explore</span>
+    <h2>Useful links before or after a round</h2>
+    <p>These jump points keep the page easy to scan once someone lands from a search result or opens a shared score.</p>
+    <div class="link-cards" aria-label="TonTones page links">
+      <button class="link-card" type="button" onclick="startGame()">
+        <span>Play</span>
+        <strong>Start the color memory game</strong>
+      </button>
+      <a class="link-card" href="#how-it-plays">
+        <span>Rules</span>
+        <strong>How the five-shade round works</strong>
+      </a>
+      <a class="link-card" href="#score-guide">
+        <span>Score</span>
+        <strong>Why close guesses still matter</strong>
+      </a>
+      <a class="link-card" href="#faq">
+        <span>FAQ</span>
+        <strong>Answers about naming, HSL, and sharing</strong>
+      </a>
+    </div>
+  </div>
+
+  <div class="seo-panel" id="faq">
     <span class="seo-kicker">Before you play</span>
-    <h2>Before you play</h2>
-    <ul>
-      <li><strong>What is TonTones?</strong> A free browser game for testing color memory across five shades, built close to the toon-tone style search intent.</li>
-      <li><strong>Is it the same name as the trending site?</strong> No. The brand is TonTones, with its own domain and visual identity.</li>
-      <li><strong>How is the score calculated?</strong> The closer your mixed shade is to the target shade, the closer your score is to 10.</li>
-      <li><strong>Does it need signup?</strong> No. Play instantly; local scores stay on your device.</li>
-    </ul>
+    <h2>FAQ</h2>
+    <div class="faq-list">
+      <details open>
+        <summary>What is TonTones?</summary>
+        <p>A free browser game for testing color memory across five shades, built close to the toon-tone style search intent while keeping its own brand.</p>
+      </details>
+      <details>
+        <summary>Is it the same name as the trending site?</summary>
+        <p>No. The brand is TonTones, with its own domain, visual identity, interface, and scoring flow.</p>
+      </details>
+      <details>
+        <summary>How is the score calculated?</summary>
+        <p>The closer your mixed shade is to the target shade, the closer your score is to 10. A full game averages five rounds.</p>
+      </details>
+      <details>
+        <summary>What do H, S, and L mean?</summary>
+        <p>H is hue, the basic color family. S is saturation, or how vivid the color is. L is lightness, or how bright or dark the shade feels.</p>
+      </details>
+      <details>
+        <summary>Can I share my score?</summary>
+        <p>Yes. After the result screen appears, use the share, poster, or platform buttons to compare your TonTones score with friends.</p>
+      </details>
+      <details>
+        <summary>Does it need signup?</summary>
+        <p>No. Play instantly; local scores stay on your device unless you choose to share them.</p>
+      </details>
+    </div>
     <div class="phrase-chips" aria-label="Ways players describe this game">
       <span>Toon-tone style game</span>
       <span>Toon tone inspired game</span>
