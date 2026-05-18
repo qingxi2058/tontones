@@ -669,8 +669,9 @@
     .result-actions .btn-again,
     .result-actions .btn-share,
     .result-actions .btn-poster {
-      padding: 12px 18px;
+      padding: 12px 12px;
       font-size: 13px;
+      white-space: nowrap;
     }
 
     /* ===== FOOTER ===== */
@@ -1584,10 +1585,10 @@
 
     const rows = roundData.slice(0, 5);
     const rowX = 90;
-    const rowY = 500;
+    const rowY = 480;
     const rowW = 900;
-    const rowH = 78;
-    const gap = 20;
+    const rowH = 72;
+    const gap = 15;
 
     rows.forEach((r, i) => {
       const y = rowY + i * (rowH + gap);
@@ -1604,7 +1605,7 @@
       ctx.textAlign = 'left';
       ctx.fillText(label, rowX + 26, y + 49);
 
-      drawRoundRect(ctx, rowX + 410, y + 16, 112, 46, 14);
+      drawRoundRect(ctx, rowX + 410, y + 14, 112, 44, 14);
       ctx.fillStyle = r.guess;
       ctx.fill();
       ctx.strokeStyle = 'rgba(255,255,255,0.22)';
@@ -1615,7 +1616,7 @@
       ctx.textAlign = 'center';
       ctx.fillText('→', rowX + 556, y + 49);
 
-      drawRoundRect(ctx, rowX + 590, y + 16, 112, 46, 14);
+      drawRoundRect(ctx, rowX + 590, y + 14, 112, 44, 14);
       ctx.fillStyle = r.char.color;
       ctx.fill();
       ctx.strokeStyle = 'rgba(255,255,255,0.22)';
