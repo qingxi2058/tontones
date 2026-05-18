@@ -619,7 +619,7 @@
     .mini-vs { font-size: 9px; color: var(--muted); }
 
     .result-actions {
-      display: flex; gap: 10px; justify-content: center;
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
     }
 
     .btn-again {
@@ -650,6 +650,28 @@
       transition: opacity var(--t), box-shadow var(--t);
     }
     .btn-share:hover { opacity: 0.88; box-shadow: 0 0 32px rgba(200,255,0,0.5); }
+
+    .btn-poster {
+      background: var(--pink);
+      color: #0c0a1e;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 24px;
+      font-size: 14px; font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 7px;
+      box-shadow: 0 0 20px rgba(255,68,204,0.3);
+      transition: opacity var(--t), box-shadow var(--t);
+    }
+    .btn-poster:hover { opacity: 0.88; box-shadow: 0 0 32px rgba(255,68,204,0.5); }
+
+    .result-actions .btn-again,
+    .result-actions .btn-share,
+    .result-actions .btn-poster {
+      padding: 12px 18px;
+      font-size: 13px;
+    }
 
     /* ===== FOOTER ===== */
     .seo-panels {
@@ -1086,6 +1108,7 @@
         <div class="result-actions">
           <button class="btn-again" id="btnAgain">↺ Try Again</button>
           <button class="btn-share" id="btnShare">Share Results ↗</button>
+          <button class="btn-poster" id="btnPoster">Save Poster 🎨</button>
         </div>
       </div>
     </div>
@@ -1504,6 +1527,129 @@
   }
 
   // =============================================
+  // POSTER
+  // =============================================
+  function drawRoundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  function savePoster() {
+    if (!roundData.length) return;
+
+    const avg = roundData.reduce((s, r) => s + r.score, 0) / roundData.length;
+    const canvas = document.createElement('canvas');
+    const size = 1080;
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = '#0c0a1e';
+    ctx.fillRect(0, 0, size, size);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+    ctx.font = '800 88px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+    ctx.fillText('TonTones', 90, 132);
+
+    ctx.globalAlpha = 0.72;
+    ctx.font = '600 30px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+    ctx.fillText(new Date().toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    }), 92, 180);
+    ctx.globalAlpha = 1;
+
+    const scoreGradient = ctx.createLinearGradient(90, 250, 710, 250);
+    scoreGradient.addColorStop(0, '#c8ff00');
+    scoreGradient.addColorStop(1, '#00e5ff');
+    ctx.fillStyle = scoreGradient;
+    ctx.font = '900 210px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+    ctx.fillText(avg.toFixed(2), 82, 370);
+
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.font = '700 34px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+    ctx.fillText('/ 10 color accuracy score', 94, 426);
+
+    const rows = roundData.slice(0, 5);
+    const rowX = 90;
+    const rowY = 500;
+    const rowW = 900;
+    const rowH = 78;
+    const gap = 20;
+
+    rows.forEach((r, i) => {
+      const y = rowY + i * (rowH + gap);
+      drawRoundRect(ctx, rowX, y, rowW, rowH, 22);
+      ctx.fillStyle = 'rgba(255,255,255,0.07)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      const label = r.char.name.split(' ').slice(1).join(' ') || r.char.name;
+      ctx.fillStyle = 'rgba(255,255,255,0.68)';
+      ctx.font = '600 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(label, rowX + 26, y + 49);
+
+      drawRoundRect(ctx, rowX + 410, y + 16, 112, 46, 14);
+      ctx.fillStyle = r.guess;
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+      ctx.stroke();
+
+      ctx.fillStyle = 'rgba(255,255,255,0.55)';
+      ctx.font = '800 28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('→', rowX + 556, y + 49);
+
+      drawRoundRect(ctx, rowX + 590, y + 16, 112, 46, 14);
+      ctx.fillStyle = r.char.color;
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+      ctx.stroke();
+
+      ctx.fillStyle = r.score >= 8 ? '#c8ff00' : r.score >= 5 ? '#ffd60a' : '#ff7777';
+      ctx.font = '900 34px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(r.score.toFixed(1), rowX + rowW - 26, y + 52);
+    });
+
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 40px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+    ctx.fillText('Can you beat me?', size / 2, 985);
+    ctx.fillStyle = '#c8ff00';
+    ctx.font = '700 28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+    ctx.fillText('toontones.net', size / 2, 1030);
+
+    canvas.toBlob(blob => {
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const stamp = new Date().toISOString().slice(0, 10);
+      a.href = url;
+      a.download = `tontones-poster-${stamp}.png`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }, 'image/png');
+  }
+
+  // =============================================
   // TICKER
   // =============================================
   function buildTicker() {
@@ -1521,6 +1667,7 @@
   document.getElementById('btnNext').onclick   = () => { tone(440, 0.08); nextRound(); };
   document.getElementById('btnAgain').onclick  = () => { tone(523, 0.12); startGame(); };
   document.getElementById('btnShare').onclick  = shareResults;
+  document.getElementById('btnPoster').onclick = savePoster;
   document.getElementById('btnHelp').onclick   = () => document.getElementById('helpModal').classList.add('open');
   document.getElementById('btnModalClose').onclick = () => document.getElementById('helpModal').classList.remove('open');
   document.getElementById('helpModal').onclick = e => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('open'); };
