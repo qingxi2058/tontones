@@ -3,15 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TonTones · Color Memory Game</title>
-  <meta name="description" content="Five iconic shades from pop culture. No hints. Just you, three sliders, and the color memory you never knew you had." />
-  <meta property="og:title" content="TonTones · Your eyes never lie." />
-  <meta property="og:description" content="Match 5 legendary colors from pop culture. Score 0–10. Share your results." />
+  <meta name="google-site-verification" content="RUKxwT1ssyzp2GdM_lhb-XO9uN77WdMxrfAc7jApSaw" />
+  <title>TonTones · Toon-Tone Style Color Memory Game</title>
+  <meta name="description" content="Play TonTones, a toon-tone style color memory game. Match five iconic shades with HSL sliders, score 0–10, and share your color accuracy." />
+  <meta property="og:title" content="TonTones · Toon-Tone Style Color Memory Game" />
+  <meta property="og:description" content="A toon tone inspired color guessing game with five shades, three sliders, and a 0–10 color accuracy score." />
   <meta property="og:url" content="https://toontones.net" />
   <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="TonTones · Color Memory Game" />
-  <meta name="twitter:description" content="Five shades. Zero hints. Just your eyes." />
+  <meta property="og:image" content="https://toontones.net/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://toontones.net/og-image.png" />
+  <meta name="twitter:title" content="TonTones · Toon-Tone Style Color Memory Game" />
+  <meta name="twitter:description" content="A toon tone inspired color guessing game. Five shades. Zero hints. Just your eyes." />
+  <link rel="canonical" href="https://toontones.net" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TonTones",
+    "alternateName": [
+      "toon-tone style color game",
+      "toon tone inspired color memory game",
+      "toon tones color guessing game"
+    ],
+    "url": "https://toontones.net",
+    "description": "A toon-tone style color memory game. Match five iconic shades from pop culture using HSL sliders. Score 0–10 based on accuracy.",
+    "applicationCategory": "Game",
+    "genre": "Puzzle",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is TonTones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TonTones is a free browser color memory game with a toon-tone style guessing loop. Players match five shades with HSL sliders and receive a 0 to 10 accuracy score."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you play the color memory game?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A target shade appears on the game card. Adjust hue, saturation, and lightness until your mix feels close, then lock it in. A full round has five shades."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is TonTones the same as the trending toon tone game?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. TonTones is an independent color memory game with its own name, domain, interface, and scoring flow. It is positioned near the same color-guessing search intent without using the same brand name."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need an account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. TonTones works in the browser without signup, and scores are stored locally on the player's device."
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     /* ===== RESET ===== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -584,6 +652,110 @@
     .btn-share:hover { opacity: 0.88; box-shadow: 0 0 32px rgba(200,255,0,0.5); }
 
     /* ===== FOOTER ===== */
+    .seo-panels {
+      position: relative;
+      z-index: 1;
+      width: min(1040px, calc(100% - 32px));
+      margin: -18px auto 52px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .seo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .seo-panel {
+      padding: 20px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 22px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 22px 60px rgba(0,0,0,0.25);
+    }
+
+    .seo-kicker {
+      display: inline-flex;
+      margin-bottom: 10px;
+      color: var(--lime);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .seo-panel h2,
+    .seo-panel h3 {
+      color: var(--white);
+      letter-spacing: -0.6px;
+      line-height: 1.08;
+    }
+
+    .seo-panel h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .seo-panel h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .seo-panel p {
+      color: var(--body);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .seo-panel ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      margin-top: 12px;
+      color: var(--body);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .seo-panel li::before {
+      content: "•";
+      color: var(--lime);
+      margin-right: 8px;
+    }
+
+    .seo-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .seo-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.075);
+      border: 1px solid rgba(255,255,255,0.11);
+      transition: background var(--t), color var(--t);
+    }
+
+    .seo-links a:hover {
+      background: rgba(200,255,0,0.14);
+      color: var(--lime);
+    }
+
+    .seo-wide {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(280px, 1.1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
     footer {
       position: relative; z-index: 1;
       padding: 16px 24px;
@@ -714,6 +886,16 @@
 
       /* Hide fixed badge on mobile (overlaps content) */
       .site-badge { display: none; }
+
+      .seo-panels {
+        width: min(100% - 28px, 1040px);
+        margin: -16px auto 36px;
+      }
+
+      .seo-grid,
+      .seo-wide {
+        grid-template-columns: 1fr;
+      }
 
       /* Footer */
       footer { font-size: 11px; gap: 6px 12px; padding: 14px 16px; }
@@ -908,15 +1090,72 @@
   </div>
 </main>
 
+<!-- ===== SEARCH SUPPORT CONTENT ===== -->
+<section class="seo-panels" aria-label="About TonTones">
+  <div class="seo-panel seo-wide">
+    <div>
+      <span class="seo-kicker">Recently refined</span>
+      <h2>A toon-tone style color game with its own name and feel.</h2>
+      <p>
+        TonTones stays close to the color-guessing trend people are searching for, but keeps its
+        own name, domain, visual style, and scoring flow. The search focus is toon-tone style game,
+        color memory game, color guessing game, daily color challenge, and HSL color matching.
+      </p>
+    </div>
+    <ul>
+      <li>Five-shade rounds built for quick play and sharing.</li>
+      <li>HSL sliders make the challenge feel precise instead of random.</li>
+      <li>No account is required; the game runs directly in the browser.</li>
+      <li>Scores stay local unless the player chooses to share them.</li>
+    </ul>
+  </div>
+
+  <div class="seo-grid">
+    <article class="seo-panel">
+      <span class="seo-kicker">How it plays</span>
+      <h3>Match five shades from memory</h3>
+      <p>Each round shows a target shade and asks you to rebuild it with hue, saturation, and lightness. The final score shows how accurate your eyes were.</p>
+    </article>
+    <article class="seo-panel">
+      <span class="seo-kicker">Daily challenge</span>
+      <h3>A short repeatable color test</h3>
+      <p>TonTones works best as a fast daily color challenge: play one round, compare your score, then come back to beat your own record.</p>
+    </article>
+    <article class="seo-panel">
+      <span class="seo-kicker">Useful searches</span>
+      <h3>Built near the hot search intent</h3>
+      <p>The page supports users looking for a toon tone inspired game, a free color guessing game, a visual memory game, or an online HSL color matching challenge.</p>
+    </article>
+  </div>
+
+  <div class="seo-panel">
+    <span class="seo-kicker">Quick FAQ</span>
+    <h2>Before you play</h2>
+    <ul>
+      <li><strong>What is TonTones?</strong> A free browser game for testing color memory across five shades, built close to the toon-tone style search intent.</li>
+      <li><strong>Is it the same name as the trending site?</strong> No. The brand is TonTones, with its own domain and visual identity.</li>
+      <li><strong>How is the score calculated?</strong> The closer your mixed shade is to the target shade, the closer your score is to 10.</li>
+      <li><strong>Does it need signup?</strong> No. Play instantly; local scores stay on your device.</li>
+    </ul>
+    <div class="seo-links" aria-label="Related search phrases">
+      <a href="/">Toon-tone style game</a>
+      <a href="/">Toon tone inspired game</a>
+      <a href="/">Color memory game</a>
+      <a href="/">Color guessing game</a>
+      <a href="/">Daily color challenge</a>
+      <a href="/">HSL color matching game</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===== FOOTER ===== -->
 <footer>
   <span><span class="f-brand">TonTones</span> · toontones.net</span>
   <span class="f-sep">|</span>
-  <span>Built with obsession over color</span>
+  <span>A free color memory game</span>
   <span class="f-sep">|</span>
-  <a href="#">About</a>
-  <a href="#">Privacy</a>
-  <a href="#">Contact</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('helpModal').classList.add('open')">How to play</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('privacyModal').classList.add('open')">Privacy</a>
 </footer>
 
 <!-- ===== BOTTOM BADGE ===== -->
@@ -930,6 +1169,23 @@
 <!-- ===== TICKER ===== -->
 <div class="ticker">
   <div class="ticker-inner" id="tickerInner"></div>
+</div>
+
+<!-- ===== PRIVACY MODAL ===== -->
+<div class="modal-bg" id="privacyModal">
+  <div class="modal">
+    <div class="modal-title">Privacy 🔒</div>
+    <div class="modal-body">
+      <p>TonTones respects your privacy.</p>
+      <br>
+      <p>• <strong>No account required.</strong> Play instantly, no sign-up.</p>
+      <p>• <strong>No data collected.</strong> Your scores are stored locally on your device only (localStorage).</p>
+      <p>• <strong>No tracking.</strong> No third-party analytics or advertising cookies.</p>
+      <br>
+      <p>Your color memories stay yours. 🎨</p>
+    </div>
+    <button class="btn-modal-close" onclick="document.getElementById('privacyModal').classList.remove('open')">Got it</button>
+  </div>
 </div>
 
 <!-- ===== HELP MODAL ===== -->
@@ -1262,6 +1518,7 @@
   document.getElementById('btnHelp').onclick   = () => document.getElementById('helpModal').classList.add('open');
   document.getElementById('btnModalClose').onclick = () => document.getElementById('helpModal').classList.remove('open');
   document.getElementById('helpModal').onclick = e => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('open'); };
+  document.getElementById('privacyModal').onclick = e => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('open'); };
 
   document.getElementById('soundBtn').onclick = () => {
     soundOn = !soundOn;
