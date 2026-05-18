@@ -725,28 +725,31 @@
       margin-right: 8px;
     }
 
-    .seo-links {
+    .phrase-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 14px;
     }
 
-    .seo-links a {
+    .phrase-chips span {
       color: var(--white);
-      text-decoration: none;
       font-size: 12px;
       font-weight: 700;
       padding: 7px 12px;
       border-radius: 18px;
       background: rgba(255,255,255,0.075);
       border: 1px solid rgba(255,255,255,0.11);
-      transition: background var(--t), color var(--t);
     }
 
-    .seo-links a:hover {
-      background: rgba(200,255,0,0.14);
+    .seo-card-link {
       color: var(--lime);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .seo-card-link:hover {
+      color: #00e5ff;
     }
 
     .seo-wide {
@@ -1094,19 +1097,19 @@
 <section class="seo-panels" aria-label="About TonTones">
   <div class="seo-panel seo-wide">
     <div>
-      <span class="seo-kicker">Recently refined</span>
+      <span class="seo-kicker">Game notes</span>
       <h2>A toon-tone style color game with its own name and feel.</h2>
       <p>
-        TonTones stays close to the color-guessing trend people are searching for, but keeps its
-        own name, domain, visual style, and scoring flow. The search focus is toon-tone style game,
-        color memory game, color guessing game, daily color challenge, and HSL color matching.
+        TonTones is built for people who want that quick toon-tone style color guessing loop:
+        see a shade, trust your memory, then mix it as close as you can. It stays close to the
+        trend without taking the same name or pretending to be the same site.
       </p>
     </div>
     <ul>
-      <li>Five-shade rounds built for quick play and sharing.</li>
-      <li>HSL sliders make the challenge feel precise instead of random.</li>
-      <li>No account is required; the game runs directly in the browser.</li>
-      <li>Scores stay local unless the player chooses to share them.</li>
+      <li>Five-shade rounds are short enough to replay and compare.</li>
+      <li>HSL sliders make every guess feel deliberate, not random.</li>
+      <li>The result screen turns your guesses into a clean shareable score.</li>
+      <li>The brand stays TonTones, with its own domain and visual identity.</li>
     </ul>
   </div>
 
@@ -1117,19 +1120,19 @@
       <p>Each round shows a target shade and asks you to rebuild it with hue, saturation, and lightness. The final score shows how accurate your eyes were.</p>
     </article>
     <article class="seo-panel">
-      <span class="seo-kicker">Daily challenge</span>
-      <h3>A short repeatable color test</h3>
-      <p>TonTones works best as a fast daily color challenge: play one round, compare your score, then come back to beat your own record.</p>
+      <span class="seo-kicker">Why it works</span>
+      <h3>Simple idea, strong replay pull</h3>
+      <p>A good color memory game does not need a long tutorial. The question is immediate: do you actually remember the shade, or just the feeling of it?</p>
     </article>
     <article class="seo-panel">
-      <span class="seo-kicker">Useful searches</span>
-      <h3>Built near the hot search intent</h3>
-      <p>The page supports users looking for a toon tone inspired game, a free color guessing game, a visual memory game, or an online HSL color matching challenge.</p>
+      <span class="seo-kicker">Same neighborhood</span>
+      <h3>Close to the trend, not a copy</h3>
+      <p>People searching for a toon tone inspired game, a free color guessing game, or an HSL color matching challenge can understand TonTones quickly.</p>
     </article>
   </div>
 
   <div class="seo-panel">
-    <span class="seo-kicker">Quick FAQ</span>
+    <span class="seo-kicker">Before you play</span>
     <h2>Before you play</h2>
     <ul>
       <li><strong>What is TonTones?</strong> A free browser game for testing color memory across five shades, built close to the toon-tone style search intent.</li>
@@ -1137,13 +1140,13 @@
       <li><strong>How is the score calculated?</strong> The closer your mixed shade is to the target shade, the closer your score is to 10.</li>
       <li><strong>Does it need signup?</strong> No. Play instantly; local scores stay on your device.</li>
     </ul>
-    <div class="seo-links" aria-label="Related search phrases">
-      <a href="/">Toon-tone style game</a>
-      <a href="/">Toon tone inspired game</a>
-      <a href="/">Color memory game</a>
-      <a href="/">Color guessing game</a>
-      <a href="/">Daily color challenge</a>
-      <a href="/">HSL color matching game</a>
+    <div class="phrase-chips" aria-label="Ways players describe this game">
+      <span>Toon-tone style game</span>
+      <span>Toon tone inspired game</span>
+      <span>Color memory game</span>
+      <span>Color guessing game</span>
+      <span>Daily color challenge</span>
+      <span>HSL color matching game</span>
     </div>
   </div>
 </section>
@@ -1261,7 +1264,10 @@
       4 * (g1-g2)**2 +
       (2 + (255-rm)/256) * (b1-b2)**2
     );
-    return parseFloat(Math.max(0, 10 - (d / 764) * 10).toFixed(2));
+    // Ease-out curve: rewards close guesses more generously while keeping large misses low.
+    const normalized = Math.min(1, d / 764.833);
+    const score = 10 * (1 - normalized) ** 0.72;
+    return parseFloat(Math.max(0, score).toFixed(2));
   }
 
   function scoreEmoji(s) {
