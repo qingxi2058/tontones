@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Color Memory Game — Test Your Color Recall with TonTones</title>
-  <meta name="description" content="Play TonTones, a free browser color memory game. See a shade, remember it, mix it with HSL sliders, and score 0–10. No signup. Works on any device." />
-  <meta property="og:title" content="Color Memory Game — Test Your Color Recall with TonTones" />
-  <meta property="og:description" content="TonTones is a free color memory game. Five shades per round, HSL sliders, shareable scores. Play now in your browser." />
+  <title>Toon Tone Color Memory Game — Test Your Color Recall</title>
+  <meta name="description" content="Play ToonTones, a free toon tone color memory game. See a shade, remember it, mix it with HSL sliders, and score 0–10. No signup." />
+  <meta property="og:title" content="Toon Tone Color Memory Game — Test Your Color Recall" />
+  <meta property="og:description" content="ToonTones is a free toon tone color memory game. Five shades per round, HSL sliders, shareable scores. Play now in your browser." />
   <meta property="og:url" content="https://toontones.net/color-memory-game/" />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="https://toontones.net/og-image.png" />
-  <meta property="og:image:alt" content="TonTones color memory game interface" />
+  <meta property="og:image:alt" content="ToonTones color memory game interface" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://toontones.net/color-memory-game/" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -20,6 +20,38 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-N4DFBHWEQE');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is ToonTones a guessing the character game?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ToonTones is a character-inspired color guessing game. Instead of naming a character from an image, you guess the memorable color associated with a character, show, or game from memory."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ToonTones a color find game?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. ToonTones works as a color find game because players use HSL sliders to find the hidden target shade as closely as possible."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What makes ToonTones different from a normal memory game?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A normal memory game asks you to remember cards or positions. ToonTones asks you to remember precise shades, then rebuild them with hue, saturation, and lightness controls."
+        }
+      }
+    ]
+  }
   </script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -58,6 +90,12 @@
     .cta-block { padding: 32px; background: linear-gradient(135deg, rgba(200,255,0,0.1), rgba(0,229,255,0.1)); border: 1px solid rgba(200,255,0,0.2); border-radius: 20px; text-align: center; }
     .cta-block h2 { margin-bottom: 12px; }
     .cta-block p { margin-bottom: 20px; }
+    .faq-list { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
+    details { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 14px; overflow: hidden; }
+    summary { padding: 16px 20px; cursor: pointer; font-weight: 700; font-size: 0.97rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::after { content: '+'; font-size: 1.2rem; color: var(--muted); }
+    details[open] summary::after { content: '-'; }
+    details p { padding: 0 20px 16px; margin: 0; font-size: 0.93rem; }
     .related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
     .related-link { padding: 10px 18px; border-radius: 50px; background: var(--glass); border: 1px solid var(--glass-b); font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
     .related-link:hover { background: var(--glass-b); text-decoration: none; }
@@ -69,34 +107,34 @@
 <body>
 
 <nav>
-  <a class="logo" href="/" title="Play TonTones color memory game">
+  <a class="logo" href="/" title="Play ToonTones color memory game">
     <div class="logo-mark">Tt</div>
-    <span class="logo-name">TonTones</span>
+    <span class="logo-name">ToonTones</span>
   </a>
-  <a class="btn-play" href="/" title="Play TonTones color memory game">▶ Play Now</a>
+  <a class="btn-play" href="/" title="Play ToonTones color memory game">▶ Play Now</a>
 </nav>
 
 <div class="page-wrap">
 
-  <p class="breadcrumb"><a href="/" title="Play TonTones color memory game">Home</a> › Color Memory Game</p>
+  <p class="breadcrumb"><a href="/" title="Play ToonTones color memory game">Home</a> › Color Memory Game</p>
 
   <section>
     <span class="kicker">Color Memory Game</span>
-    <h1>Color Memory Game: Test Your Color Recall with TonTones</h1>
-    <p class="hero-sub">A color memory game shows you a shade, hides it, then asks you to recreate it from memory. TonTones is a free browser-based version with five rounds, HSL sliders, and an accuracy score from 0 to 10. Harder than it sounds.</p>
-    <a class="btn-primary" href="/" title="Play TonTones color memory game">▶ Test Your Color Memory</a>
+    <h1>Toon Tone Color Memory Game: Test Your Color Recall</h1>
+    <p class="hero-sub">A color memory game shows you a shade, hides it, then asks you to recreate it from memory. ToonTones is a free browser-based version with five rounds, HSL sliders, and an accuracy score from 0 to 10. Harder than it sounds.</p>
+    <a class="btn-primary" href="/" title="Play ToonTones color memory game">▶ Test Your Color Memory</a>
   </section>
 
   <section>
     <h2>What Is a Color Memory Game?</h2>
     <p>A color memory game is a type of visual recall test where a player must reproduce a specific color from memory after the original has been removed from view. Unlike standard memory games that test whether you can remember a position or a word, color memory games test your ability to store and retrieve precise visual information — the exact shade, warmth, brightness, and saturation of a color.</p>
-    <p>The challenge is harder than most players expect. Human memory encodes color loosely. We tend to remember the general family of a color — whether it was blue, green, or orange — far better than its exact shade. Knowing something was "dark blue" is easy. Knowing whether it was navy, cobalt, royal, or midnight blue is the genuine test. TonTones sits exactly at that harder level.</p>
+    <p>The challenge is harder than most players expect. Human memory encodes color loosely. We tend to remember the general family of a color — whether it was blue, green, or orange — far better than its exact shade. Knowing something was "dark blue" is easy. Knowing whether it was navy, cobalt, royal, or midnight blue is the genuine test. ToonTones sits exactly at that harder level.</p>
     <p>Color memory games have been used in psychology research, art education, and professional design training. For most people, playing one is the first time they realize how imprecise their visual memory actually is — and how quickly it improves with practice.</p>
   </section>
 
   <section>
-    <h2>How TonTones Works as a Color Memory Game</h2>
-    <p>TonTones presents five color challenges in sequence. Each challenge follows the same structure:</p>
+    <h2>How ToonTones Works as a Color Memory Game</h2>
+    <p>ToonTones presents five color challenges in sequence. Each challenge follows the same structure:</p>
     <ul class="science-list">
       <li data-icon="👁️">A target shade is displayed on the game card. You study it for as long as you need before beginning your guess.</li>
       <li data-icon="🎚️">Three HSL sliders appear: hue (color family), saturation (vividness), and lightness (brightness). You drag each slider to build a color mix that matches what you remember.</li>
@@ -123,7 +161,7 @@
       <div class="card">
         <div class="num">6–8</div>
         <h3>rounds to improve</h3>
-        <p>Most new TonTones players see measurable score improvement within six to eight rounds as they learn to anchor hue, saturation, and lightness separately.</p>
+        <p>Most new ToonTones players see measurable score improvement within six to eight rounds as they learn to anchor hue, saturation, and lightness separately.</p>
       </div>
     </div>
   </section>
@@ -131,8 +169,14 @@
   <section>
     <h2>The Benefits of Playing a Color Memory Game</h2>
     <p>Regular color memory practice develops visual precision that transfers to several real-world contexts. Graphic designers who practice color recall report faster color matching during client work. Painters who train color memory find it easier to mix pigments that match a reference without constant comparison. Even for players who have no professional interest in color, the game trains focused visual attention — the ability to study a stimulus carefully rather than glancing at it and assuming you understood it.</p>
-    <p>TonTones keeps rounds short (under three minutes) and immediately shows your accuracy score, which makes the feedback loop tight. Tight feedback loops are the most effective way to build any perceptual skill. You always know exactly how far off your guess was, which gives your brain a specific error to correct on the next attempt.</p>
+    <p>ToonTones keeps rounds short (under three minutes) and immediately shows your accuracy score, which makes the feedback loop tight. Tight feedback loops are the most effective way to build any perceptual skill. You always know exactly how far off your guess was, which gives your brain a specific error to correct on the next attempt.</p>
     <p>The HSL slider model also teaches players a structured vocabulary for describing color. Players who spend time with the sliders start to think about colors in terms of hue family, saturation level, and brightness — rather than just "it's a sort of blueish purple." That mental framework makes future color work — whether in design, art, or daily life — noticeably sharper.</p>
+  </section>
+
+  <section>
+    <h2>Character Color Guessing, Not Just Generic Matching</h2>
+    <p>Many players search for a <strong>guessing the character game</strong> because they want a challenge tied to characters and pop culture, not a plain color quiz. ToonTones keeps that feeling by asking you to remember memorable character-style shades, then rebuild them from memory with sliders.</p>
+    <p>It also works as a <strong>color find game</strong>: the target shade is hidden, and your job is to find the closest possible match. The difference is that ToonTones adds a memory step, so the game tests both color perception and recall instead of simple side-by-side matching.</p>
   </section>
 
   <section>
@@ -141,35 +185,56 @@
     <p>Focus on hue accuracy first. The hue slider controls which color family you land in, and a wrong color family is the most costly error in the scoring system. Get the hue approximately right, then adjust saturation, then spend the most careful attention on lightness — the slider most players rush.</p>
   </section>
 
+  <section>
+    <h2>Color Memory Game FAQ</h2>
+    <div class="faq-list">
+      <details open>
+        <summary>Is ToonTones a guessing the character game?</summary>
+        <p>ToonTones is a character-inspired color guessing game. Instead of identifying a character from a picture, you guess the memorable shade connected to that kind of character or pop culture palette.</p>
+      </details>
+      <details>
+        <summary>Is ToonTones a color find game?</summary>
+        <p>Yes. You use HSL sliders to find the hidden target color as closely as possible. The extra challenge is that the target is hidden while you mix, so memory matters.</p>
+      </details>
+      <details>
+        <summary>Is ToonTones related to toon tone?</summary>
+        <p>ToonTones is an independent toon tone style color memory game. It uses its own name, site, scoring, and visual design while serving the same search intent: quick color guessing from memory.</p>
+      </details>
+    </div>
+  </section>
+
   <section class="cta-block">
     <h2>Play a Round Now — It Takes Two Minutes</h2>
     <p>The fastest way to understand a color memory game is to play one. Five shades, three sliders, one score. No account needed.</p>
-    <a class="btn-primary" href="/" title="Play TonTones color memory game">▶ Start Playing Free</a>
+    <a class="btn-primary" href="/" title="Play ToonTones color memory game">▶ Start Playing Free</a>
   </section>
 
   <section>
     <h2>Explore More</h2>
     <div class="related-links">
-      <a class="related-link" href="/" title="Play TonTones color memory game">Play TonTones Now</a>
-      <a class="related-link" href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
-      <a class="related-link" href="/how-to-play/" title="How to play TonTones color memory game">How to Play Guide</a>
-      <a class="related-link" href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Color Challenge</a>
-      <a class="related-link" href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
-      <a class="related-link" href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+      <a class="related-link" href="/" title="Play ToonTones color memory game">Play ToonTones Now</a>
+      <a class="related-link" href="/tone-legends/" title="ToonTones color challenge leaderboard">Tone Legends</a>
+      <a class="related-link" href="/how-to-play/" title="How to play ToonTones color memory game">How to Play Guide</a>
+      <a class="related-link" href="/daily-color-challenge/" title="Daily color challenge on ToonTones">Daily Color Challenge</a>
+      <a class="related-link" href="/toon-tone-alternative/" title="toon tone alternative color memory game">Toon Tone Alternative</a>
+      <a class="related-link" href="/color-accuracy-test/" title="Color find game and color accuracy test">Color Find & Accuracy Test</a>
     </div>
   </section>
 
 </div>
 
 <footer>
-  <a href="/" title="Play TonTones color memory game">Home</a>
-  <a href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
-  <a href="/how-to-play/" title="How to play TonTones color memory game">How to Play</a>
-  <a href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Challenge</a>
-  <a href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+  <a href="/" title="Play ToonTones color memory game">Home</a>
+  <a href="/tone-legends/" title="ToonTones color challenge leaderboard">Tone Legends</a>
+  <a href="/how-to-play/" title="How to play ToonTones color memory game">How to Play</a>
+  <a href="/daily-color-challenge/" title="Daily color challenge on ToonTones">Daily Challenge</a>
+  <a href="/toon-tone-alternative/" title="toon tone alternative color memory game">Toon Tone Alternative</a>
   <a href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
   <a href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
-  <p style="margin-top:16px;">© TonTones · toontones.net · A free color memory game</p>
+  <a href="https://findly.tools/toontones?utm_source=toontones" target="_blank" style="display:inline-block; margin-top:16px;">
+    <img src="https://findly.tools/badges/findly-tools-badge-light.svg" alt="Featured on Findly.tools" width="150" />
+  </a>
+  <p style="margin-top:16px;">© ToonTones · toontones.net · A free color memory game</p>
 </footer>
 
 </body>

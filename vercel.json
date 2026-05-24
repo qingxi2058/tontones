@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.toontones.net"
+        }
+      ],
+      "destination": "https://toontones.net/$1",
+      "permanent": true
+    }
+  ]
+}

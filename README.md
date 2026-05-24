@@ -1,32 +1,51 @@
-# TonTones
+# ToonTones
 
-A free browser color memory game with a toon-tone style guessing loop.
+A free toon tone style color memory game built for instant browser play.
 
-Five shades. Three sliders. One shot at glory.
+Study a shade, recreate it from memory with HSL sliders, and get a 0-10 color accuracy score.
 
-🎨 **Play now**: https://toontones.net
+**Play now:** https://toontones.net
 
 ---
+
+![ToonTones preview](./og-image.png)
 
 ## How it works
 
 1. A target shade appears on screen
-2. Drag the **H / S / L** sliders until your mix matches
-3. Lock it in — score 0–10 per round, averaged over five rounds
+2. Drag the H / S / L sliders until your mix matches
+3. Lock it in and receive a 0-10 score
+4. Finish five shades to get your average color accuracy
 
 ## Features
 
-- **Perceptual scoring** — uses weighted RGB distance so your eyes, not math, decide what's "close"
-- **Ease-out curve** — near-misses are rewarded generously; large misses stay near 0
-- **Challenge links** — finish a round → tap Challenge → send the URL. Friends play the exact same 5 colors and their score is shown against yours automatically
-- **Score poster** — save a 1080×1080 shareable image of your results
-- **Platform share** — one-tap sharing to X, Threads, or WhatsApp with tailored copy
+- Toon tone inspired color memory gameplay
+- Five iconic shades per round
+- HSL slider-based color matching
+- 0-10 color accuracy score
+- Daily color challenge
+- Tone Legends leaderboard
+- Challenge links for sharing exact rounds
+- Shareable score poster
 - No signup, no install — scores stored locally in the browser
+
+## Pages
+
+- [Play ToonTones](https://toontones.net/)
+- [How to Play](https://toontones.net/how-to-play/)
+- [Color Memory Game](https://toontones.net/color-memory-game/)
+- [Color Accuracy Test](https://toontones.net/color-accuracy-test/)
+- [Daily Color Challenge](https://toontones.net/daily-color-challenge/)
+- [Tone Legends](https://toontones.net/tone-legends/)
 
 ## Stack
 
-Single-file HTML / CSS / JS. No frameworks, no build step. Deployed on Vercel.
+Static HTML / CSS / JavaScript. No signup, no download, no app install.
 
 ## Live site
 
 **https://toontones.net**
+
+## License
+
+All rights reserved.
