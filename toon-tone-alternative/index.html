@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toon Tone Alternative — TonTones Free Color Memory Game</title>
+  <meta name="description" content="Looking for a Toon Tone alternative? TonTones is a free browser color memory game with five shades, HSL sliders, and a shareable 0–10 accuracy score. Play now." />
+  <meta property="og:title" content="Toon Tone Alternative — TonTones Free Color Memory Game" />
+  <meta property="og:description" content="TonTones is the toon-tone style color guessing game you can play right now. Free, no signup, five shades per round." />
+  <meta property="og:url" content="https://toontones.net/toon-tone-alternative/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://toontones.net/og-image.png" />
+  <meta property="og:image:alt" content="TonTones — a Toon Tone alternative color memory game" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://toontones.net/toon-tone-alternative/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4DFBHWEQE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4DFBHWEQE');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a good Toon Tone alternative?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TonTones (toontones.net) is a popular Toon Tone alternative. It is a free browser color memory game with five shades per round, HSL sliders, and a shareable 0–10 accuracy score. No signup is required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is TonTones the same as Toon Tone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. TonTones is an independent color memory game inspired by the toon-tone style guessing loop. It has its own brand, domain, and visual identity at toontones.net."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is TonTones free to play?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. TonTones is completely free, works in any modern browser, and requires no account, login, or download."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --lime: #c8ff00; --pink: #ff44cc; --cyan: #00e5ff;
+      --bg: #0c0a1e; --glass: rgba(255,255,255,0.07); --glass-b: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.5); --body: rgba(255,255,255,0.8);
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Arial, sans-serif; background: var(--bg); color: white; min-height: 100vh; line-height: 1.65; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; background: rgba(12,10,30,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-b); position: sticky; top: 0; z-index: 10; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 36px; height: 36px; background: linear-gradient(135deg, var(--lime) 0%, var(--cyan) 50%, var(--pink) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #0c0a1e; letter-spacing: -1px; flex-shrink: 0; }
+    .logo-name { font-size: 17px; font-weight: 700; color: white; }
+    .btn-play { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 14px; padding: 9px 20px; border-radius: 50px; border: none; cursor: pointer; text-decoration: none; }
+    .btn-play:hover { opacity: 0.9; text-decoration: none; }
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--muted); }
+    .kicker { display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--lime); margin-bottom: 12px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; }
+    h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 16px; }
+    h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    p { color: var(--body); margin-bottom: 16px; }
+    .hero-sub { font-size: 1.1rem; max-width: 640px; margin-bottom: 28px; }
+    .btn-primary { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 15px; padding: 12px 28px; border-radius: 50px; text-decoration: none; display: inline-block; }
+    .btn-primary:hover { opacity: 0.9; text-decoration: none; }
+    section { margin-bottom: 56px; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 20px; }
+    .feature { padding: 22px 24px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 16px; }
+    .feature .icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .compare-table th, .compare-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--glass-b); font-size: 0.9rem; }
+    .compare-table th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; }
+    .compare-table td:first-child { color: var(--muted); }
+    .compare-table .yes { color: var(--lime); font-weight: 700; }
+    .faq-list { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
+    details { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 14px; overflow: hidden; }
+    details + details { margin-top: 8px; }
+    summary { padding: 16px 20px; cursor: pointer; font-weight: 700; font-size: 0.97rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::after { content: '+'; font-size: 1.2rem; color: var(--muted); }
+    details[open] summary::after { content: '−'; }
+    details p { padding: 0 20px 16px; margin: 0; font-size: 0.93rem; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .related-link { padding: 10px 18px; border-radius: 50px; background: var(--glass); border: 1px solid var(--glass-b); font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .related-link:hover { background: var(--glass-b); text-decoration: none; }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--glass-b); font-size: 13px; color: var(--muted); }
+    footer a { color: var(--muted); margin: 0 8px; }
+    footer a:hover { color: white; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/" title="Play TonTones color memory game">
+    <div class="logo-mark">Tt</div>
+    <span class="logo-name">TonTones</span>
+  </a>
+  <a class="btn-play" href="/" title="Play TonTones color memory game">▶ Play Now</a>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="breadcrumb"><a href="/" title="Play TonTones color memory game">Home</a> › Toon Tone Alternative</p>
+
+  <section>
+    <span class="kicker">Toon-Tone Style Game</span>
+    <h1>The Toon Tone Alternative You Can Play Right Now</h1>
+    <p class="hero-sub">TonTones is a free browser color memory game built on the same idea as Toon Tone — guess five shades from memory using HSL sliders, score your accuracy from 0 to 10, and share the result. No app, no signup, no wait.</p>
+    <a class="btn-primary" href="/" title="Play TonTones color memory game">▶ Play TonTones Free</a>
+  </section>
+
+  <section>
+    <h2>Why Players Search for a Toon Tone Alternative</h2>
+    <p>Toon Tone introduced a format that players love: study a shade, then mix it from memory. The loop is short, satisfying, and competitive. When Toon Tone is unavailable, slow, or simply hard to find through search, players start looking for something that delivers the same quick-fire color guessing experience. TonTones was built for exactly that moment.</p>
+    <p>The core mechanic is identical in concept — you see a target color, the target is hidden, you reconstruct it using three sliders, and a score tells you how close you were. Where TonTones differs is in its own name, its own visual style, and its own growing library of shades drawn from pop culture references that players already know.</p>
+  </section>
+
+  <section>
+    <h2>What TonTones Offers</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="icon">🎨</div>
+        <h3>Five shades per round</h3>
+        <p>Each session covers five different target colors drawn from recognizable pop culture palettes. Rounds take two to three minutes to complete.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🎚️</div>
+        <h3>HSL slider controls</h3>
+        <p>Three sliders — hue, saturation, lightness — give you precise, human-readable control over your color mix. No hex codes or number inputs needed.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📊</div>
+        <h3>Accuracy score 0–10</h3>
+        <p>Your score is based on the measured distance between your shade and the target in RGB space. Closer shades earn higher scores. An exact match is 10.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📤</div>
+        <h3>Challenge links and share cards</h3>
+        <p>After finishing, generate a challenge link that sends friends into the same five-shade round. Share your score on X, Threads, or WhatsApp directly from the results screen.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔄</div>
+        <h3>Unlimited replays</h3>
+        <p>TonTones Classic mode lets you replay as many times as you want. There is no daily limit, no round cap, and no energy system.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔒</div>
+        <h3>No account required</h3>
+        <p>Play immediately without creating an account. Local scores are saved to your device automatically so you can track your all-time best.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Quick Comparison</h2>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>TonTones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Free to play</td><td class="yes">✓ Always free</td></tr>
+        <tr><td>Shades per round</td><td>5</td></tr>
+        <tr><td>Slider type</td><td>HSL (hue, saturation, lightness)</td></tr>
+        <tr><td>Score range</td><td>0 – 10 per round</td></tr>
+        <tr><td>Signup required</td><td class="yes">✓ None</td></tr>
+        <tr><td>Replay limit</td><td class="yes">✓ Unlimited</td></tr>
+        <tr><td>Challenge links</td><td class="yes">✓ Yes</td></tr>
+        <tr><td>Share cards</td><td class="yes">✓ Yes (poster download)</td></tr>
+        <tr><td>Works in browser</td><td class="yes">✓ All modern browsers</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>How to Start Playing</h2>
+    <p>Open <a href="/" title="Play TonTones color memory game">toontones.net</a> in any browser. The intro screen shows your best scores if you have played before. Press Play Now to start a fresh five-shade round. After guessing all five shades, the result screen shows your average accuracy and gives you options to share, challenge a friend, or download a score poster.</p>
+    <p>If you want to compare scores fairly with someone else, use the challenge link. Anyone who opens your challenge link plays the exact same five shades you did. Their final score is shown alongside yours when they finish — no coordinating needed.</p>
+  </section>
+
+  <section>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details open>
+        <summary>Is TonTones officially related to Toon Tone?</summary>
+        <p>No. TonTones is an independent color memory game with its own brand and domain. It is inspired by the toon-tone style guessing format but is not affiliated with, endorsed by, or connected to any other game or brand.</p>
+      </details>
+      <details>
+        <summary>Can I play TonTones on mobile?</summary>
+        <p>Yes. TonTones is fully responsive and works on iOS Safari, Android Chrome, and any other modern mobile browser. The sliders are touch-friendly and sized for small screens.</p>
+      </details>
+      <details>
+        <summary>Are the shades from real pop culture?</summary>
+        <p>Yes. The color library is drawn from recognizable shades associated with well-known films, shows, games, and characters — but TonTones does not display any copyright-protected artwork or imagery. Only the colors are used.</p>
+      </details>
+      <details>
+        <summary>How do I improve my score?</summary>
+        <p>Start with hue, then saturation, then lightness. Most wrong guesses come from rushing the lightness slider. Visit the <a href="/how-to-play/" title="How to play TonTones color memory game">How to Play</a> guide for a full breakdown of strategies.</p>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <h2>Explore More</h2>
+    <div class="related-links">
+      <a class="related-link" href="/" title="Play TonTones color memory game">Play TonTones Now</a>
+      <a class="related-link" href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+      <a class="related-link" href="/how-to-play/" title="How to play TonTones color memory game">How to Play Guide</a>
+      <a class="related-link" href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Color Challenge</a>
+      <a class="related-link" href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+      <a class="related-link" href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <a href="/" title="Play TonTones color memory game">Home</a>
+  <a href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+  <a href="/how-to-play/" title="How to play TonTones color memory game">How to Play</a>
+  <a href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Challenge</a>
+  <a href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+  <a href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+  <a href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+  <p style="margin-top:16px;">© TonTones · toontones.net · A free color memory game</p>
+</footer>
+
+</body>
+</html>

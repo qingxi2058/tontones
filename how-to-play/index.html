@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Play TonTones — Color Memory Game Guide</title>
+  <meta name="description" content="Learn how to play TonTones step by step. Adjust hue, saturation, and lightness sliders to match five shades from memory and score 0–10 per round." />
+  <meta property="og:title" content="How to Play TonTones — Color Memory Game Guide" />
+  <meta property="og:description" content="Step-by-step guide for TonTones. Learn HSL sliders, scoring, tips, and strategies to improve your color accuracy." />
+  <meta property="og:url" content="https://toontones.net/how-to-play/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://toontones.net/og-image.png" />
+  <meta property="og:image:alt" content="TonTones how to play guide" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://toontones.net/how-to-play/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4DFBHWEQE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4DFBHWEQE');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Play TonTones",
+    "description": "A step-by-step guide for playing TonTones, a toon-tone style color memory game.",
+    "url": "https://toontones.net/how-to-play/",
+    "step": [
+      {"@type": "HowToStep", "name": "Start a round", "text": "Click Play Now on the home page to begin a five-shade round."},
+      {"@type": "HowToStep", "name": "Study the target shade", "text": "A color swatch appears. Memorize its hue, saturation, and brightness before the timer starts."},
+      {"@type": "HowToStep", "name": "Set the sliders", "text": "Adjust the H (hue), S (saturation), and L (lightness) sliders until your mixed color matches your memory of the target."},
+      {"@type": "HowToStep", "name": "Lock in your guess", "text": "Press Confirm to submit your shade. Your accuracy score for that round is shown immediately."},
+      {"@type": "HowToStep", "name": "Complete five shades", "text": "Repeat for all five rounds. Your final score is the average of five accuracy readings."},
+      {"@type": "HowToStep", "name": "Share your result", "text": "Use the share button to post your score or send a challenge link to friends."}
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --lime: #c8ff00; --pink: #ff44cc; --cyan: #00e5ff;
+      --bg: #0c0a1e; --glass: rgba(255,255,255,0.07); --glass-b: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.5); --body: rgba(255,255,255,0.8);
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Arial, sans-serif; background: var(--bg); color: white; min-height: 100vh; line-height: 1.65; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; background: rgba(12,10,30,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-b); position: sticky; top: 0; z-index: 10; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 36px; height: 36px; background: linear-gradient(135deg, var(--lime) 0%, var(--cyan) 50%, var(--pink) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #0c0a1e; letter-spacing: -1px; flex-shrink: 0; }
+    .logo-name { font-size: 17px; font-weight: 700; color: white; }
+    .btn-play { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 14px; padding: 9px 20px; border-radius: 50px; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; }
+    .btn-play:hover { opacity: 0.9; text-decoration: none; }
+
+    /* LAYOUT */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--muted); }
+
+    /* HERO */
+    .page-hero { margin-bottom: 56px; }
+    .kicker { display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--lime); margin-bottom: 12px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; }
+    .hero-sub { font-size: 1.1rem; color: var(--body); max-width: 600px; margin-bottom: 28px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 15px; padding: 12px 28px; border-radius: 50px; text-decoration: none; display: inline-block; }
+    .btn-primary:hover { opacity: 0.9; text-decoration: none; }
+
+    /* STEPS */
+    .steps-section { margin-bottom: 56px; }
+    h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px; }
+    .step-list { display: flex; flex-direction: column; gap: 16px; }
+    .step { display: flex; gap: 20px; padding: 20px 24px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 16px; align-items: flex-start; }
+    .step-num { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 900; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .step-body p { font-size: 0.93rem; color: var(--body); }
+
+    /* SLIDERS */
+    .sliders-section { margin-bottom: 56px; }
+    .slider-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
+    .slider-card { padding: 20px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 16px; }
+    .slider-card .label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--lime); margin-bottom: 8px; }
+    .slider-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .slider-card p { font-size: 0.88rem; color: var(--body); }
+
+    /* SCORING */
+    .scoring-section { margin-bottom: 56px; }
+    .score-bands { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 20px; }
+    .band { padding: 16px 20px; border-radius: 14px; background: var(--glass); border: 1px solid var(--glass-b); }
+    .band .range { font-size: 1.2rem; font-weight: 900; }
+    .band .label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+    .band.gold .range { color: var(--lime); }
+    .band.silver .range { color: var(--cyan); }
+    .band.bronze .range { color: #ffd60a; }
+    .band.base .range { color: var(--pink); }
+
+    /* TIPS */
+    .tips-section { margin-bottom: 56px; }
+    .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 20px; }
+    .tip { padding: 20px 24px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 16px; }
+    .tip h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; color: var(--cyan); }
+    .tip p { font-size: 0.88rem; color: var(--body); }
+
+    /* RELATED */
+    .related { margin-bottom: 56px; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .related-link { padding: 10px 18px; border-radius: 50px; background: var(--glass); border: 1px solid var(--glass-b); font-size: 14px; font-weight: 600; color: white; text-decoration: none; transition: background 0.2s; }
+    .related-link:hover { background: var(--glass-b); text-decoration: none; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--glass-b); font-size: 13px; color: var(--muted); }
+    footer a { color: var(--muted); margin: 0 8px; }
+    footer a:hover { color: white; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/" title="Play TonTones color memory game">
+    <div class="logo-mark">Tt</div>
+    <span class="logo-name">TonTones</span>
+  </a>
+  <a class="btn-play" href="/" title="Play TonTones color memory game">▶ Play Now</a>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="breadcrumb"><a href="/" title="Play TonTones color memory game">Home</a> › How to Play</p>
+
+  <section class="page-hero">
+    <span class="kicker">Rules &amp; Guide</span>
+    <h1>How to Play TonTones Color Memory Game</h1>
+    <p class="hero-sub">TonTones is a five-shade color memory game. Each round shows you a target color, then hides it. Your job is to recreate that exact shade using three sliders — hue, saturation, and lightness — and score as close to 10 as possible.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="/" title="Play TonTones color memory game">▶ Play Your First Round</a>
+    </div>
+  </section>
+
+  <section class="steps-section">
+    <h2>Six Steps to Your First Round</h2>
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Open the game and press Play Now</h3>
+          <p>The game loads instantly in any modern browser. No signup, no download, no install required. Just tap Play Now on the home screen to begin a fresh five-shade round.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Study the target shade carefully</h3>
+          <p>A color card appears on screen showing the shade you need to match. Look at it closely — note whether it leans warm or cool, vivid or muted, light or dark. You have as much time as you need to look before locking in.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Set the H slider first — find the right color family</h3>
+          <p>The Hue slider (H) runs across the full color spectrum from red through orange, yellow, green, cyan, blue, and purple back to red. Drag it until the preview color looks roughly right in terms of its basic family — red, blue, green, and so on.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Adjust S to control vividness</h3>
+          <p>The Saturation slider (S) controls how vivid or washed-out the color looks. A value of 100 gives a fully saturated, rich color. Dropping it toward 0 moves the color toward grey. Match the target's intensity level here.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Fine-tune L for brightness and depth</h3>
+          <p>The Lightness slider (L) controls how bright or dark the shade appears. Very low values produce near-black tones. Values near 50 give the most vivid colors. Values above 80 push toward pastel and white. This is usually where the most accuracy is lost or gained.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h3>Confirm your guess and review the score</h3>
+          <p>When your preview looks as close as possible to the target, press Confirm. The game compares your mixed shade to the target using color distance and awards a score between 0 and 10. A score of 10 means your shade matched perfectly. After five rounds, your average across all five shades is your final score for that session.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sliders-section">
+    <h2>Understanding the Three Sliders</h2>
+    <p>The HSL (hue, saturation, lightness) model is one of the most human-readable ways to describe color because it separates the three properties that human vision is most sensitive to. Mastering each slider independently is the fastest way to improve your TonTones score.</p>
+    <div class="slider-cards">
+      <div class="slider-card">
+        <p class="label">H — Hue</p>
+        <h3>The color family</h3>
+        <p>Hue runs from 0° (red) through 120° (green), 240° (blue), and back to 360° (red again). Think of it as choosing a position on a color wheel. Nail hue first — wrong hue guesses cost the most points.</p>
+      </div>
+      <div class="slider-card">
+        <p class="label">S — Saturation</p>
+        <h3>How vivid or grey</h3>
+        <p>Saturation at 100% means the purest, most vibrant version of the hue. At 0% it's a neutral grey. Most real-world colors sit between 40–80%. If a target looks faded, push S down. If it looks electric, push it up.</p>
+      </div>
+      <div class="slider-card">
+        <p class="label">L — Lightness</p>
+        <h3>How bright or dark</h3>
+        <p>Lightness at 50% gives the most vivid output. Below 30% the color looks very dark. Above 70% it starts to look pastel. This is the slider most players rush — take an extra second here and your scores will jump.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="scoring-section">
+    <h2>How Scoring Works</h2>
+    <p>TonTones scores each guess by measuring the color distance between your shade and the target shade in RGB space. The maximum possible distance gives you 0 points. An exact match gives 10. Most rounds end somewhere in the middle. Five round scores are averaged for your final result.</p>
+    <div class="score-bands">
+      <div class="band gold"><div class="range">9.0 – 10.0</div><div class="label">Near-perfect. Your memory is precise.</div></div>
+      <div class="band silver"><div class="range">7.5 – 8.9</div><div class="label">Strong recall. Minor brightness drift.</div></div>
+      <div class="band bronze"><div class="range">6.0 – 7.4</div><div class="label">Good hue, saturation slightly off.</div></div>
+      <div class="band base"><div class="range">0 – 5.9</div><div class="label">Hue or lightness misread. Keep practicing.</div></div>
+    </div>
+  </section>
+
+  <section class="tips-section">
+    <h2>Tips to Improve Your Score</h2>
+    <div class="tips-grid">
+      <div class="tip">
+        <h3>Always fix hue first</h3>
+        <p>Hue errors produce the largest score penalty. Lock the right color family before touching S or L. Spending an extra three seconds on hue is worth it.</p>
+      </div>
+      <div class="tip">
+        <h3>Lightness is the hardest slider</h3>
+        <p>Most players drift lighter than the target. If a color looks rich and vivid, start at L = 50 and adjust down rather than up. Dark shades are easier to overshoot.</p>
+      </div>
+      <div class="tip">
+        <h3>Use the preview square actively</h3>
+        <p>The color preview updates live as you move sliders. Hold the target in your peripheral vision and look for the moment the preview feels balanced against your memory.</p>
+      </div>
+      <div class="tip">
+        <h3>Compare adjacent shades</h3>
+        <p>If you played a previous round with a similar color, recall how far you were off and adjust. Players who track their own patterns improve faster than those who guess fresh each time.</p>
+      </div>
+      <div class="tip">
+        <h3>Pastels and neutrals are tricky</h3>
+        <p>Pale, low-saturation colors often need S below 30 and L above 70. Don't assume a light color is fully saturated just because it looks bright — it may be almost grey.</p>
+      </div>
+      <div class="tip">
+        <h3>Play the daily for fair comparison</h3>
+        <p>Random mode changes every game. The daily challenge gives everyone the same five shades, so your score is directly comparable to anyone else who plays that day.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="related">
+    <h2>Explore More</h2>
+    <div class="related-links">
+      <a class="related-link" href="/" title="Play TonTones color memory game">Play TonTones Now</a>
+      <a class="related-link" href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+      <a class="related-link" href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Color Challenge</a>
+      <a class="related-link" href="/color-memory-game/" title="Color memory game guide and practice">What Is a Color Memory Game?</a>
+      <a class="related-link" href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+      <a class="related-link" href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <a href="/" title="Play TonTones color memory game">Home</a>
+  <a href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+  <a href="/how-to-play/" title="How to play TonTones color memory game">How to Play</a>
+  <a href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Challenge</a>
+  <a href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+  <a href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+  <a href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+  <p style="margin-top:16px;">© TonTones · toontones.net · A free color memory game</p>
+</footer>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="RUKxwT1ssyzp2GdM_lhb-XO9uN77WdMxrfAc7jApSaw" />
   <title>TonTones · Toon-Tone Style Color Memory Game</title>
-  <meta name="description" content="Play TonTones, a toon-tone style color memory game. Match five iconic shades with HSL sliders, score 0–10, and share your color accuracy." />
+  <meta name="description" content="Play TonTones, a free toon-tone style color memory game. Match five iconic shades with HSL sliders, score 0–10, and share your color accuracy online." />
   <meta property="og:title" content="TonTones · Toon-Tone Style Color Memory Game" />
   <meta property="og:description" content="A toon tone inspired color guessing game with five shades, three sliders, and a 0–10 color accuracy score." />
   <meta property="og:url" content="https://toontones.net" />
@@ -13,11 +13,21 @@
   <meta property="og:image" content="https://toontones.net/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="TonTones color memory game — match five shades with HSL sliders" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://toontones.net/og-image.png" />
+  <meta name="twitter:image:alt" content="TonTones color memory game" />
   <meta name="twitter:title" content="TonTones · Toon-Tone Style Color Memory Game" />
   <meta name="twitter:description" content="A toon tone inspired color guessing game. Five shades. Zero hints. Just your eyes." />
   <link rel="canonical" href="https://toontones.net" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4DFBHWEQE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4DFBHWEQE');
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -190,6 +200,7 @@
     .btn-pill:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
     .btn-pill.accent { background: var(--lime); color: #0c0a1e; border-color: transparent; }
     .btn-pill.accent:hover { background: #d6ff1a; }
+    .nav-right a.btn-pill { text-decoration: none; }
 
     .btn-ghost {
       background: none; border: none;
@@ -1137,9 +1148,10 @@
 <nav>
   <div class="logo" id="logoBtn">
     <div class="logo-mark">Tt</div>
-    <span class="logo-name">toontones.net</span>
+    <span class="logo-name">TonTones</span>
   </div>
   <div class="nav-right">
+    <a class="btn-pill" href="#explore" title="Open TonTones guides and challenge pages">Explore</a>
     <button class="btn-pill accent" onclick="startGame()">▶ <span class="btn-text">Play Now</span></button>
     <button class="btn-ghost" id="soundBtn" title="Toggle sound">🔊</button>
     <button class="btn-ghost" title="About" onclick="document.getElementById('helpModal').classList.add('open')">?</button>
@@ -1376,17 +1388,29 @@
         <span>Play</span>
         <strong>Play now — 5 shades, 2 min</strong>
       </button>
-      <a class="link-card" href="#how-it-plays">
-        <span>Rules</span>
-        <strong>How the five-shade round works</strong>
+      <a class="link-card" href="/how-to-play/" title="How to play TonTones color memory game">
+        <span>Guide</span>
+        <strong>How to play — step-by-step rules</strong>
       </a>
-      <a class="link-card" href="#score-guide">
-        <span>Score</span>
-        <strong>How your score is calculated</strong>
+      <a class="link-card" href="/daily-color-challenge/" title="Daily color challenge on TonTones">
+        <span>Daily</span>
+        <strong>Daily color challenge explained</strong>
       </a>
-      <a class="link-card" href="#faq">
-        <span>FAQ</span>
-        <strong>Common questions answered</strong>
+      <a class="link-card" href="/tone-legends/" title="TonTones color challenge leaderboard">
+        <span>Legends</span>
+        <strong>Tone Legends — chase your best score</strong>
+      </a>
+      <a class="link-card" href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">
+        <span>Alt</span>
+        <strong>Looking for a Toon Tone alternative?</strong>
+      </a>
+      <a class="link-card" href="/color-memory-game/" title="Color memory game guide and practice">
+        <span>Memory</span>
+        <strong>What is a color memory game?</strong>
+      </a>
+      <a class="link-card" href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">
+        <span>Test</span>
+        <strong>Test your color accuracy online</strong>
       </a>
     </div>
   </div>
@@ -1437,7 +1461,12 @@
   <span class="f-sep">|</span>
   <span>A free color memory game</span>
   <span class="f-sep">|</span>
-  <a href="javascript:void(0)" onclick="document.getElementById('helpModal').classList.add('open')">How to play</a>
+  <a href="/how-to-play/" title="How to play TonTones color memory game">How to Play</a>
+  <a href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+  <a href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+  <a href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Challenge</a>
+  <a href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+  <a href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
   <a href="javascript:void(0)" onclick="document.getElementById('privacyModal').classList.add('open')">Privacy</a>
 </footer>
 

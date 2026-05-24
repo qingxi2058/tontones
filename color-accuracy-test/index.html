@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Accuracy Test — How Precise Is Your Color Vision?</title>
+  <meta name="description" content="Test your color accuracy online with TonTones. Match five shades using HSL sliders and score 0–10 per round. Free, instant, no signup. See how precise your eye is." />
+  <meta property="og:title" content="Color Accuracy Test — How Precise Is Your Color Vision?" />
+  <meta property="og:description" content="Find out how accurately you can reproduce colors from memory. TonTones gives you five shades, three sliders, and an instant 0–10 accuracy score." />
+  <meta property="og:url" content="https://toontones.net/color-accuracy-test/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://toontones.net/og-image.png" />
+  <meta property="og:image:alt" content="TonTones color accuracy test" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://toontones.net/color-accuracy-test/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4DFBHWEQE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4DFBHWEQE');
+  </script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --lime: #c8ff00; --pink: #ff44cc; --cyan: #00e5ff;
+      --bg: #0c0a1e; --glass: rgba(255,255,255,0.07); --glass-b: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.5); --body: rgba(255,255,255,0.8);
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Arial, sans-serif; background: var(--bg); color: white; min-height: 100vh; line-height: 1.65; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; background: rgba(12,10,30,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-b); position: sticky; top: 0; z-index: 10; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 36px; height: 36px; background: linear-gradient(135deg, var(--lime) 0%, var(--cyan) 50%, var(--pink) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #0c0a1e; letter-spacing: -1px; flex-shrink: 0; }
+    .logo-name { font-size: 17px; font-weight: 700; color: white; }
+    .btn-play { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 14px; padding: 9px 20px; border-radius: 50px; text-decoration: none; }
+    .btn-play:hover { opacity: 0.9; text-decoration: none; }
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--muted); }
+    .kicker { display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--lime); margin-bottom: 12px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; }
+    h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 16px; }
+    h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    p { color: var(--body); margin-bottom: 16px; }
+    .hero-sub { font-size: 1.1rem; max-width: 640px; margin-bottom: 28px; }
+    .btn-primary { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 15px; padding: 12px 28px; border-radius: 50px; text-decoration: none; display: inline-block; }
+    .btn-primary:hover { opacity: 0.9; text-decoration: none; }
+    section { margin-bottom: 56px; }
+    .score-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .score-table th, .score-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--glass-b); font-size: 0.92rem; }
+    .score-table th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; }
+    .score-table td:first-child { font-weight: 800; font-size: 1.05rem; }
+    .s-perfect td:first-child { color: var(--lime); }
+    .s-strong td:first-child { color: var(--cyan); }
+    .s-good td:first-child { color: #ffd60a; }
+    .s-fair td:first-child { color: #ff9500; }
+    .s-base td:first-child { color: var(--pink); }
+    .factor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 20px; }
+    .factor { padding: 22px 24px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 16px; }
+    .factor .icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .tip-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+    .tip-item { display: flex; gap: 14px; align-items: flex-start; padding: 16px 20px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 14px; }
+    .tip-item .num { width: 28px; height: 28px; border-radius: 50%; background: var(--lime); color: #0c0a1e; font-weight: 900; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tip-item p { font-size: 0.9rem; color: var(--body); margin: 0; }
+    .cta-block { padding: 32px; background: linear-gradient(135deg, rgba(200,255,0,0.1), rgba(0,229,255,0.1)); border: 1px solid rgba(200,255,0,0.2); border-radius: 20px; text-align: center; }
+    .cta-block h2 { margin-bottom: 12px; }
+    .cta-block p { margin-bottom: 20px; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .related-link { padding: 10px 18px; border-radius: 50px; background: var(--glass); border: 1px solid var(--glass-b); font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .related-link:hover { background: var(--glass-b); text-decoration: none; }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--glass-b); font-size: 13px; color: var(--muted); }
+    footer a { color: var(--muted); margin: 0 8px; }
+    footer a:hover { color: white; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/" title="Play TonTones color memory game">
+    <div class="logo-mark">Tt</div>
+    <span class="logo-name">TonTones</span>
+  </a>
+  <a class="btn-play" href="/" title="Play TonTones color memory game">▶ Take the Test</a>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="breadcrumb"><a href="/" title="Play TonTones color memory game">Home</a> › Color Accuracy Test</p>
+
+  <section>
+    <span class="kicker">Color Accuracy Test</span>
+    <h1>Color Accuracy Test: How Precise Is Your Color Eye?</h1>
+    <p class="hero-sub">TonTones measures your color accuracy on a 0–10 scale per shade. Five rounds, HSL sliders, instant feedback. No specialist equipment, no waiting — just you, a color, and your memory. Find out where you actually land.</p>
+    <a class="btn-primary" href="/" title="Play TonTones color memory game">▶ Start the Free Color Accuracy Test</a>
+  </section>
+
+  <section>
+    <h2>What Is a Color Accuracy Test?</h2>
+    <p>A color accuracy test measures how precisely you can perceive, remember, and reproduce a specific color. Professional color accuracy tests — used in industries like print, fashion, paint manufacturing, and display calibration — are complex, expensive, and require controlled lighting conditions. TonTones offers a lightweight alternative that anyone can complete for free in a browser.</p>
+    <p>The TonTones color accuracy test works by showing you a target shade for study, then asking you to recreate it from memory using three HSL sliders. The game measures the difference between your mix and the original in RGB color space and converts that distance into a score between 0 and 10. Five rounds are averaged for a final accuracy reading that gives you a reliable sense of where your color recall sits.</p>
+    <p>While TonTones is built as a game rather than a clinical instrument, the results are meaningful. Players consistently find that their scores reflect genuine differences in visual precision — designers, painters, and photographers tend to score higher, while players new to working with color start lower and improve quickly with practice.</p>
+  </section>
+
+  <section>
+    <h2>Understanding Your Score</h2>
+    <table class="score-table">
+      <thead>
+        <tr>
+          <th>Score range</th>
+          <th>What it means</th>
+          <th>Typical profile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="s-perfect">
+          <td>9.5 – 10.0</td>
+          <td>Near-perfect color recall. Your shade was almost indistinguishable from the target.</td>
+          <td>Experienced designers, painters, colorists</td>
+        </tr>
+        <tr class="s-strong">
+          <td>8.0 – 9.4</td>
+          <td>Strong accuracy. Minor drift in saturation or lightness but hue was well-locked.</td>
+          <td>Regular creative practitioners, photographers</td>
+        </tr>
+        <tr class="s-good">
+          <td>6.5 – 7.9</td>
+          <td>Good instincts. Correct color family but some brightness or vividness mismatch.</td>
+          <td>Attentive beginners, visual arts students</td>
+        </tr>
+        <tr class="s-fair">
+          <td>5.0 – 6.4</td>
+          <td>Developing precision. Hue roughly right but saturation or lightness drifted significantly.</td>
+          <td>Most first-time players</td>
+        </tr>
+        <tr class="s-base">
+          <td>0 – 4.9</td>
+          <td>Starting point. The shade landed in a different zone of color space from the target.</td>
+          <td>No prior color training; normal start point</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>What Affects Your Color Accuracy Score</h2>
+    <div class="factor-grid">
+      <div class="factor">
+        <div class="icon">🖥️</div>
+        <h3>Screen calibration</h3>
+        <p>An uncalibrated monitor can display target colors that differ from the intended values. For the most reliable test results, use a screen with a neutral white point and reasonable color accuracy.</p>
+      </div>
+      <div class="factor">
+        <div class="icon">💡</div>
+        <h3>Ambient lighting</h3>
+        <p>Bright overhead lighting or strong sunlight hitting your screen will wash out perceived saturation and lightness. A dim environment with consistent neutral light gives the most accurate readings.</p>
+      </div>
+      <div class="factor">
+        <div class="icon">🧠</div>
+        <h3>Visual working memory</h3>
+        <p>The precision with which you can hold a color in working memory before your representation drifts to a more generic version is the core skill being tested. This improves significantly with practice.</p>
+      </div>
+      <div class="factor">
+        <div class="icon">🎨</div>
+        <h3>Prior color training</h3>
+        <p>People who regularly work with color — designers, artists, decorators — tend to have stronger color accuracy because they have developed a finer internal vocabulary for distinguishing shades.</p>
+      </div>
+      <div class="factor">
+        <div class="icon">👁️</div>
+        <h3>Color vision type</h3>
+        <p>Standard color vision allows discrimination of the full visible spectrum. Some forms of color vision deficiency primarily affect red-green discrimination and will systematically lower scores on shades in those ranges.</p>
+      </div>
+      <div class="factor">
+        <div class="icon">⏱️</div>
+        <h3>Time spent studying</h3>
+        <p>Players who rush through the target shade consistently score lower than those who take five or more seconds to study before moving to the sliders. The test rewards deliberate observation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to Improve Your Color Accuracy</h2>
+    <div class="tip-list">
+      <div class="tip-item">
+        <div class="num">1</div>
+        <p><strong>Name the color before guessing.</strong> Before touching a slider, say aloud or think: "This is a warm mid-blue, medium saturation, slightly dark." Encoding the color verbally creates a second memory trace that is more stable than pure visual recall alone.</p>
+      </div>
+      <div class="tip-item">
+        <div class="num">2</div>
+        <p><strong>Learn what 50% looks like on each slider.</strong> Spend a session in Classic mode deliberately setting each slider to the midpoint and studying the result. Knowing your reference points makes adjusting from there intuitive rather than guesswork.</p>
+      </div>
+      <div class="tip-item">
+        <div class="num">3</div>
+        <p><strong>Fix hue first, always.</strong> The hue slider positions you in the right color family. Everything else is refinement. Players who jump to saturation or lightness first before hue is settled make larger overall errors.</p>
+      </div>
+      <div class="tip-item">
+        <div class="num">4</div>
+        <p><strong>Expect to overshoot lightness.</strong> Most players guess the lightness slider too high — they make colors lighter than the target. If you are not sure, default to slightly darker than your first instinct and adjust up if needed.</p>
+      </div>
+      <div class="tip-item">
+        <div class="num">5</div>
+        <p><strong>Compare your guess swatch to your memory.</strong> After setting the sliders, look at the live preview and ask whether it matches the target you memorized — not whether it is the "right" color in the abstract. The comparison is between memory and output, not between two abstract ideas of the color.</p>
+      </div>
+      <div class="tip-item">
+        <div class="num">6</div>
+        <p><strong>Play the daily challenge for accountability.</strong> Classic mode lets you replay and improve on the same shades. The daily challenge forces you to commit to one attempt per day, which makes the score more meaningful as a personal benchmark over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-block">
+    <h2>Test Your Color Accuracy Now</h2>
+    <p>Five shades, three sliders, one score. See exactly how precise your color recall is today — then try to improve it tomorrow.</p>
+    <a class="btn-primary" href="/" title="Play TonTones color memory game">▶ Take the Free Color Accuracy Test</a>
+  </section>
+
+  <section>
+    <h2>Explore More</h2>
+    <div class="related-links">
+      <a class="related-link" href="/" title="Play TonTones color memory game">Play TonTones Now</a>
+      <a class="related-link" href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+      <a class="related-link" href="/how-to-play/" title="How to play TonTones color memory game">How to Play Guide</a>
+      <a class="related-link" href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Color Challenge</a>
+      <a class="related-link" href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+      <a class="related-link" href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <a href="/" title="Play TonTones color memory game">Home</a>
+  <a href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+  <a href="/how-to-play/" title="How to play TonTones color memory game">How to Play</a>
+  <a href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Challenge</a>
+  <a href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+  <a href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+  <a href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+  <p style="margin-top:16px;">© TonTones · toontones.net · A free color memory game</p>
+</footer>
+
+</body>
+</html>

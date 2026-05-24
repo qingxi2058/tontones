@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Memory Game — Test Your Color Recall with TonTones</title>
+  <meta name="description" content="Play TonTones, a free browser color memory game. See a shade, remember it, mix it with HSL sliders, and score 0–10. No signup. Works on any device." />
+  <meta property="og:title" content="Color Memory Game — Test Your Color Recall with TonTones" />
+  <meta property="og:description" content="TonTones is a free color memory game. Five shades per round, HSL sliders, shareable scores. Play now in your browser." />
+  <meta property="og:url" content="https://toontones.net/color-memory-game/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://toontones.net/og-image.png" />
+  <meta property="og:image:alt" content="TonTones color memory game interface" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://toontones.net/color-memory-game/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4DFBHWEQE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4DFBHWEQE');
+  </script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --lime: #c8ff00; --pink: #ff44cc; --cyan: #00e5ff;
+      --bg: #0c0a1e; --glass: rgba(255,255,255,0.07); --glass-b: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.5); --body: rgba(255,255,255,0.8);
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Arial, sans-serif; background: var(--bg); color: white; min-height: 100vh; line-height: 1.65; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; background: rgba(12,10,30,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-b); position: sticky; top: 0; z-index: 10; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 36px; height: 36px; background: linear-gradient(135deg, var(--lime) 0%, var(--cyan) 50%, var(--pink) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #0c0a1e; letter-spacing: -1px; flex-shrink: 0; }
+    .logo-name { font-size: 17px; font-weight: 700; color: white; }
+    .btn-play { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 14px; padding: 9px 20px; border-radius: 50px; text-decoration: none; }
+    .btn-play:hover { opacity: 0.9; text-decoration: none; }
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--muted); }
+    .kicker { display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--lime); margin-bottom: 12px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; }
+    h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 16px; }
+    h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    p { color: var(--body); margin-bottom: 16px; }
+    .hero-sub { font-size: 1.1rem; max-width: 640px; margin-bottom: 28px; }
+    .btn-primary { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 15px; padding: 12px 28px; border-radius: 50px; text-decoration: none; display: inline-block; }
+    .btn-primary:hover { opacity: 0.9; text-decoration: none; }
+    section { margin-bottom: 56px; }
+    .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 20px; }
+    .card { padding: 22px 24px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 16px; }
+    .card .num { font-size: 2rem; font-weight: 900; color: var(--lime); margin-bottom: 8px; }
+    .science-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .science-list li { display: flex; gap: 14px; align-items: flex-start; padding: 16px 20px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 14px; font-size: 0.92rem; color: var(--body); }
+    .science-list li::before { content: attr(data-icon); font-size: 1.2rem; flex-shrink: 0; }
+    .cta-block { padding: 32px; background: linear-gradient(135deg, rgba(200,255,0,0.1), rgba(0,229,255,0.1)); border: 1px solid rgba(200,255,0,0.2); border-radius: 20px; text-align: center; }
+    .cta-block h2 { margin-bottom: 12px; }
+    .cta-block p { margin-bottom: 20px; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .related-link { padding: 10px 18px; border-radius: 50px; background: var(--glass); border: 1px solid var(--glass-b); font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .related-link:hover { background: var(--glass-b); text-decoration: none; }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--glass-b); font-size: 13px; color: var(--muted); }
+    footer a { color: var(--muted); margin: 0 8px; }
+    footer a:hover { color: white; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/" title="Play TonTones color memory game">
+    <div class="logo-mark">Tt</div>
+    <span class="logo-name">TonTones</span>
+  </a>
+  <a class="btn-play" href="/" title="Play TonTones color memory game">▶ Play Now</a>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="breadcrumb"><a href="/" title="Play TonTones color memory game">Home</a> › Color Memory Game</p>
+
+  <section>
+    <span class="kicker">Color Memory Game</span>
+    <h1>Color Memory Game: Test Your Color Recall with TonTones</h1>
+    <p class="hero-sub">A color memory game shows you a shade, hides it, then asks you to recreate it from memory. TonTones is a free browser-based version with five rounds, HSL sliders, and an accuracy score from 0 to 10. Harder than it sounds.</p>
+    <a class="btn-primary" href="/" title="Play TonTones color memory game">▶ Test Your Color Memory</a>
+  </section>
+
+  <section>
+    <h2>What Is a Color Memory Game?</h2>
+    <p>A color memory game is a type of visual recall test where a player must reproduce a specific color from memory after the original has been removed from view. Unlike standard memory games that test whether you can remember a position or a word, color memory games test your ability to store and retrieve precise visual information — the exact shade, warmth, brightness, and saturation of a color.</p>
+    <p>The challenge is harder than most players expect. Human memory encodes color loosely. We tend to remember the general family of a color — whether it was blue, green, or orange — far better than its exact shade. Knowing something was "dark blue" is easy. Knowing whether it was navy, cobalt, royal, or midnight blue is the genuine test. TonTones sits exactly at that harder level.</p>
+    <p>Color memory games have been used in psychology research, art education, and professional design training. For most people, playing one is the first time they realize how imprecise their visual memory actually is — and how quickly it improves with practice.</p>
+  </section>
+
+  <section>
+    <h2>How TonTones Works as a Color Memory Game</h2>
+    <p>TonTones presents five color challenges in sequence. Each challenge follows the same structure:</p>
+    <ul class="science-list">
+      <li data-icon="👁️">A target shade is displayed on the game card. You study it for as long as you need before beginning your guess.</li>
+      <li data-icon="🎚️">Three HSL sliders appear: hue (color family), saturation (vividness), and lightness (brightness). You drag each slider to build a color mix that matches what you remember.</li>
+      <li data-icon="📐">When you confirm your guess, the game measures the distance between your mixed shade and the target shade using a standard color distance formula.</li>
+      <li data-icon="🔢">Your accuracy score for that round is displayed as a number between 0 and 10. Closer shades score higher. A perfect match scores 10.</li>
+      <li data-icon="🔁">After five rounds, your final score is the average of all five round scores. You can then share your result or generate a challenge link for friends.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Why Color Memory Is Harder Than You Think</h2>
+    <p>The human visual system is excellent at detecting differences between two colors placed side by side. It is far weaker at holding an exact shade in working memory after the reference is removed. Research in visual cognition shows that people can reliably recall whether a color was warm or cool, light or dark, but struggle to pinpoint it within a narrow range — which is precisely the skill a color memory game trains.</p>
+    <div class="content-grid">
+      <div class="card">
+        <div class="num">3</div>
+        <h3>seconds</h3>
+        <p>The average time visual working memory can hold a precise color shade before it begins to drift toward a more generic representation.</p>
+      </div>
+      <div class="card">
+        <div class="num">10M+</div>
+        <h3>distinguishable colors</h3>
+        <p>The number of colors the human eye can distinguish under ideal conditions — yet we typically recall only the broad family without training.</p>
+      </div>
+      <div class="card">
+        <div class="num">6–8</div>
+        <h3>rounds to improve</h3>
+        <p>Most new TonTones players see measurable score improvement within six to eight rounds as they learn to anchor hue, saturation, and lightness separately.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The Benefits of Playing a Color Memory Game</h2>
+    <p>Regular color memory practice develops visual precision that transfers to several real-world contexts. Graphic designers who practice color recall report faster color matching during client work. Painters who train color memory find it easier to mix pigments that match a reference without constant comparison. Even for players who have no professional interest in color, the game trains focused visual attention — the ability to study a stimulus carefully rather than glancing at it and assuming you understood it.</p>
+    <p>TonTones keeps rounds short (under three minutes) and immediately shows your accuracy score, which makes the feedback loop tight. Tight feedback loops are the most effective way to build any perceptual skill. You always know exactly how far off your guess was, which gives your brain a specific error to correct on the next attempt.</p>
+    <p>The HSL slider model also teaches players a structured vocabulary for describing color. Players who spend time with the sliders start to think about colors in terms of hue family, saturation level, and brightness — rather than just "it's a sort of blueish purple." That mental framework makes future color work — whether in design, art, or daily life — noticeably sharper.</p>
+  </section>
+
+  <section>
+    <h2>Tips for Better Color Memory Scores</h2>
+    <p>Before confirming a guess, give yourself three seconds to look at the target shade and name what you see: "warm orange, medium saturation, fairly bright." Verbally encoding the color anchors it in a different memory system — semantic memory — which is more stable than pure visual working memory alone. When you move to the sliders, the words act as a guide even after the visual impression has faded.</p>
+    <p>Focus on hue accuracy first. The hue slider controls which color family you land in, and a wrong color family is the most costly error in the scoring system. Get the hue approximately right, then adjust saturation, then spend the most careful attention on lightness — the slider most players rush.</p>
+  </section>
+
+  <section class="cta-block">
+    <h2>Play a Round Now — It Takes Two Minutes</h2>
+    <p>The fastest way to understand a color memory game is to play one. Five shades, three sliders, one score. No account needed.</p>
+    <a class="btn-primary" href="/" title="Play TonTones color memory game">▶ Start Playing Free</a>
+  </section>
+
+  <section>
+    <h2>Explore More</h2>
+    <div class="related-links">
+      <a class="related-link" href="/" title="Play TonTones color memory game">Play TonTones Now</a>
+      <a class="related-link" href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+      <a class="related-link" href="/how-to-play/" title="How to play TonTones color memory game">How to Play Guide</a>
+      <a class="related-link" href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Color Challenge</a>
+      <a class="related-link" href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+      <a class="related-link" href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <a href="/" title="Play TonTones color memory game">Home</a>
+  <a href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+  <a href="/how-to-play/" title="How to play TonTones color memory game">How to Play</a>
+  <a href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Challenge</a>
+  <a href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+  <a href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+  <a href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+  <p style="margin-top:16px;">© TonTones · toontones.net · A free color memory game</p>
+</footer>
+
+</body>
+</html>

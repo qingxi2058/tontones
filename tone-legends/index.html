@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tone Legends — TonTones Color Challenge Leaderboard</title>
+  <meta name="description" content="Check your TonTones color challenge records, chase a higher color accuracy score, and share challenge links with friends. A leaderboard-style page for TonTones players." />
+  <meta property="og:title" content="Tone Legends — TonTones Color Challenge Leaderboard" />
+  <meta property="og:description" content="Turn your TonTones score into a challenge. Track today's best, all-time best, score tiers, and share links friends can try to beat." />
+  <meta property="og:url" content="https://toontones.net/tone-legends/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://toontones.net/og-image.png" />
+  <meta property="og:image:alt" content="TonTones Tone Legends color challenge leaderboard" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://toontones.net/tone-legends/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4DFBHWEQE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4DFBHWEQE');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Tone Legends?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tone Legends is the leaderboard-style record page for TonTones. It shows your local best scores, score tiers, and ways to challenge friends."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Tone Legends a public leaderboard?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This first version uses scores saved on your own device. Public rankings require an account or server-side score submission and may be added later."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I get a better Tone Legends score?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Play TonTones, finish all five shades, then try to improve your average color accuracy score. Scores above 9 are treated as legend-level results."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --lime: #c8ff00; --pink: #ff44cc; --cyan: #00e5ff;
+      --bg: #0c0a1e; --glass: rgba(255,255,255,0.07); --glass-b: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.55); --body: rgba(255,255,255,0.82);
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Arial, sans-serif; background: radial-gradient(circle at 20% 0%, rgba(255,68,204,0.18), transparent 34%), radial-gradient(circle at 80% 20%, rgba(0,229,255,0.16), transparent 34%), var(--bg); color: white; min-height: 100vh; line-height: 1.65; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; background: rgba(12,10,30,0.84); backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-b); position: sticky; top: 0; z-index: 10; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 36px; height: 36px; background: linear-gradient(135deg, var(--lime) 0%, var(--cyan) 50%, var(--pink) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #0c0a1e; letter-spacing: -1px; flex-shrink: 0; }
+    .logo-name { font-size: 17px; font-weight: 700; color: white; }
+    .btn-play { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 14px; padding: 9px 20px; border-radius: 50px; text-decoration: none; white-space: nowrap; }
+    .btn-play:hover { opacity: 0.9; text-decoration: none; }
+    .page-wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--muted); }
+    .kicker { display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--lime); margin-bottom: 12px; }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.08; letter-spacing: -1px; margin-bottom: 16px; }
+    h2 { font-size: 1.55rem; font-weight: 850; letter-spacing: -0.3px; margin-bottom: 16px; }
+    h3 { font-size: 1.02rem; font-weight: 780; margin-bottom: 8px; }
+    p { color: var(--body); margin-bottom: 16px; }
+    section { margin-bottom: 56px; }
+    .hero-sub { font-size: 1.1rem; max-width: 710px; margin-bottom: 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .btn-primary { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 850; font-size: 15px; padding: 12px 28px; border-radius: 50px; text-decoration: none; display: inline-block; }
+    .btn-secondary { color: white; font-weight: 750; font-size: 15px; padding: 11px 22px; border-radius: 50px; border: 1px solid var(--glass-b); background: var(--glass); text-decoration: none; display: inline-block; }
+    .btn-primary:hover, .btn-secondary:hover { opacity: 0.9; text-decoration: none; }
+    .board { background: rgba(255,255,255,0.08); border: 1px solid var(--glass-b); border-radius: 24px; padding: 28px; box-shadow: 0 20px 70px rgba(0,0,0,0.26); }
+    .board-top { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    .live-pill { display: inline-flex; align-items: center; gap: 8px; color: #66ff9a; font-weight: 850; background: rgba(102,255,154,0.12); border: 1px solid rgba(102,255,154,0.25); border-radius: 999px; padding: 7px 12px; font-size: 13px; }
+    .live-dot { width: 9px; height: 9px; border-radius: 50%; background: #16d66b; box-shadow: 0 0 14px rgba(22,214,107,0.85); }
+    .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: rgba(255,255,255,0.06); border-radius: 16px; padding: 6px; margin-bottom: 14px; }
+    .tab { border: 0; border-radius: 12px; padding: 10px 12px; color: rgba(255,255,255,0.68); background: transparent; font: inherit; font-weight: 800; cursor: pointer; }
+    .tab.active { color: #0c0a1e; background: linear-gradient(135deg, var(--lime), var(--cyan)); }
+    .countdown { display: flex; justify-content: space-between; gap: 16px; background: rgba(200,255,0,0.09); border: 1px solid rgba(200,255,0,0.18); border-radius: 14px; padding: 12px 16px; color: var(--body); font-weight: 780; margin-bottom: 16px; }
+    .countdown strong { color: var(--lime); letter-spacing: 0.5px; }
+    .rank-list { display: grid; gap: 10px; }
+    .rank-row { display: grid; grid-template-columns: 46px 1fr auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .rank-row:last-child { border-bottom: 0; }
+    .rank-num { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: rgba(200,255,0,0.13); color: var(--lime); font-weight: 900; }
+    .rank-name { color: white; font-weight: 850; }
+    .rank-note { color: var(--muted); font-size: 0.87rem; }
+    .rank-score { color: white; font-weight: 900; font-size: 1.15rem; }
+    .your-row { margin-top: 14px; padding: 16px; border: 1px solid rgba(0,229,255,0.24); background: rgba(0,229,255,0.08); border-radius: 16px; }
+    .your-row strong { color: var(--cyan); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-top: 20px; }
+    .card { padding: 22px 24px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 18px; }
+    .card .metric { color: white; font-size: 2rem; font-weight: 900; line-height: 1; margin-bottom: 10px; }
+    .card p { color: var(--muted); margin: 0; font-size: 0.92rem; }
+    .ladder { display: grid; gap: 12px; margin-top: 20px; }
+    .tier { display: grid; grid-template-columns: 86px 1fr; gap: 14px; align-items: center; padding: 16px; border-radius: 16px; background: var(--glass); border: 1px solid var(--glass-b); }
+    .tier-score { color: var(--lime); font-weight: 900; font-size: 1.25rem; }
+    .tier strong { color: white; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .related-link { padding: 10px 18px; border-radius: 50px; background: var(--glass); border: 1px solid var(--glass-b); font-size: 14px; font-weight: 650; color: white; text-decoration: none; }
+    .related-link:hover { background: var(--glass-b); text-decoration: none; }
+    details { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 14px; overflow: hidden; margin-bottom: 8px; }
+    summary { padding: 16px 20px; cursor: pointer; font-weight: 750; font-size: 0.97rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::after { content: '+'; font-size: 1.2rem; color: var(--muted); }
+    details[open] summary::after { content: '-'; }
+    details p { padding: 0 20px 16px; margin: 0; font-size: 0.93rem; color: var(--body); }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--glass-b); font-size: 13px; color: var(--muted); }
+    footer a { color: var(--muted); margin: 0 8px; }
+    footer a:hover { color: white; }
+    @media (max-width: 620px) {
+      nav { padding: 14px 16px; }
+      .logo-name { font-size: 15px; }
+      .page-wrap { padding: 36px 18px 64px; }
+      .board { padding: 20px; border-radius: 18px; }
+      .board-top { flex-direction: column; }
+      .rank-row { grid-template-columns: 38px 1fr auto; gap: 10px; }
+      .rank-score { font-size: 1rem; }
+      .tier { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/" title="Play TonTones color memory game">
+    <div class="logo-mark">Tt</div>
+    <span class="logo-name">TonTones</span>
+  </a>
+  <a class="btn-play" href="/" title="Play TonTones color memory game">Play Now</a>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="breadcrumb"><a href="/" title="Play TonTones color memory game">Home</a> / Tone Legends</p>
+
+  <section>
+    <span class="kicker">Tone Legends</span>
+    <h1>TonTones Color Challenge Leaderboard</h1>
+    <p class="hero-sub">Tone Legends turns every five-shade run into something worth chasing. Track your best color accuracy score, compare it against clear score tiers, then send friends a challenge link and see who has the sharper color memory.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="/" title="Play TonTones color memory game">Play a Round</a>
+      <a class="btn-secondary" href="/daily-color-challenge/" title="Daily color challenge on TonTones">Try Daily Challenge</a>
+    </div>
+  </section>
+
+  <section class="board" aria-label="Tone Legends leaderboard">
+    <div class="board-top">
+      <div>
+        <span class="kicker">Your board</span>
+        <h2>Chase the next rank</h2>
+        <p>Your current records are read from this device only. No account is needed.</p>
+      </div>
+      <div class="live-pill"><span class="live-dot"></span> Local Live</div>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Score view">
+      <button class="tab active" type="button" id="todayTab">Last 24h</button>
+      <button class="tab" type="button" id="alltimeTab">All-Time</button>
+    </div>
+
+    <div class="countdown">
+      <span>Daily reset</span>
+      <strong id="resetClock">--:--:--</strong>
+    </div>
+
+    <div class="rank-list" id="rankList"></div>
+    <div class="your-row" id="yourSummary">Play one full round to create your first Tone Legends record.</div>
+  </section>
+
+  <section>
+    <h2>Why this makes TonTones more replayable</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="metric" id="todayMetric">--</div>
+        <h3>Today's best</h3>
+        <p>One number to beat before the day resets.</p>
+      </div>
+      <div class="card">
+        <div class="metric" id="alltimeMetric">--</div>
+        <h3>All-time best</h3>
+        <p>A personal ceiling that gives every replay a clear purpose.</p>
+      </div>
+      <div class="card">
+        <div class="metric" id="tierMetric">New</div>
+        <h3>Current tier</h3>
+        <p>A simple status label players can chase and share.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Score tiers</h2>
+    <p>TonTones scores are easy to understand but hard to master. A 7 means your color instincts are already solid. A 9 means you can remember shade details most people miss. A 9.8 is the kind of score people want to prove was not luck.</p>
+    <div class="ladder">
+      <div class="tier">
+        <div class="tier-score">9.80+</div>
+        <div><strong>Tone Legend</strong><p>Near-perfect color memory across all five shades.</p></div>
+      </div>
+      <div class="tier">
+        <div class="tier-score">9.20+</div>
+        <div><strong>Sharp Eye</strong><p>Precise enough to make friends replay immediately.</p></div>
+      </div>
+      <div class="tier">
+        <div class="tier-score">8.50+</div>
+        <div><strong>Color Hunter</strong><p>Strong control of hue, saturation, and lightness.</p></div>
+      </div>
+      <div class="tier">
+        <div class="tier-score">7.00+</div>
+        <div><strong>Good Instincts</strong><p>Better than guessing. Keep playing to tighten the shade.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to challenge friends</h2>
+    <p>Finish a five-shade round on TonTones, then use the Challenge button on the result screen. The copied link sends your friend into the exact same set of shades and compares their final score against yours.</p>
+    <p>This is the safest first step before adding a public Top 100 board. It creates the same competitive feeling without requiring accounts, moderation, or server-side score review.</p>
+  </section>
+
+  <section>
+    <h2>FAQ</h2>
+    <details open>
+      <summary>Why not show a fake public Top 100?</summary>
+      <p>A fake public leaderboard would hurt trust. This page uses real scores stored on the player's own device, then pushes players toward challenge links and share cards.</p>
+    </details>
+    <details>
+      <summary>Can TonTones add a real public leaderboard later?</summary>
+      <p>Yes. A real public board needs score submission, spam control, and a privacy decision. This page is designed so that a real Top 100 can be added later without changing the homepage.</p>
+    </details>
+    <details>
+      <summary>Does this page change the homepage ranking target?</summary>
+      <p>No. The homepage stays focused on the game. Tone Legends is an inner page for players who want rankings, records, and score competition.</p>
+    </details>
+  </section>
+
+  <section>
+    <h2>Explore More</h2>
+    <div class="related-links">
+      <a class="related-link" href="/" title="Play TonTones color memory game">Play TonTones Now</a>
+      <a class="related-link" href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Color Challenge</a>
+      <a class="related-link" href="/how-to-play/" title="How to play TonTones color memory game">How to Play Guide</a>
+      <a class="related-link" href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+      <a class="related-link" href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+      <a class="related-link" href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <a href="/" title="Play TonTones color memory game">Home</a>
+  <a href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+  <a href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Challenge</a>
+  <a href="/how-to-play/" title="How to play TonTones color memory game">How to Play</a>
+  <a href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+  <a href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+  <a href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+  <p style="margin-top:16px;">TonTones · toontones.net · A free color memory game</p>
+</footer>
+
+<script>
+  const STORAGE_KEY = 'toontones';
+  const LEGACY_STORAGE_KEY = ['ton', 'tones'].join('');
+  const tierRows = [
+    { name: '#LEGEND', note: 'Beat 9.80 to claim it', score: 9.80 },
+    { name: '#SHARPEYE', note: 'Beat 9.20 to pass it', score: 9.20 },
+    { name: '#HUNTER', note: 'Beat 8.50 to pass it', score: 8.50 },
+    { name: '#INSTINCT', note: 'Beat 7.00 to pass it', score: 7.00 },
+    { name: '#TRAINING', note: 'Finish one full run', score: 0.01 }
+  ];
+  let activeView = 'today';
+
+  function loadScores() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+      const d = JSON.parse(saved || legacy || '{}');
+      if (!saved && legacy) localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+      return d || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function fmt(n) {
+    return typeof n === 'number' && !Number.isNaN(n) ? n.toFixed(2) : '--';
+  }
+
+  function tierFor(score) {
+    if (!score) return 'New';
+    if (score >= 9.8) return 'Legend';
+    if (score >= 9.2) return 'Sharp Eye';
+    if (score >= 8.5) return 'Hunter';
+    if (score >= 7) return 'Instinct';
+    return 'Training';
+  }
+
+  function renderBoard() {
+    const today = new Date().toDateString();
+    const d = loadScores();
+    const todayScore = d.todayDate === today ? d.today : null;
+    const alltimeScore = d.alltime || null;
+    const current = activeView === 'today' ? todayScore : alltimeScore;
+    const rows = [...tierRows];
+    if (current) {
+      rows.push({ name: '#YOU', note: activeView === 'today' ? 'Your best today' : 'Your all-time best', score: current, you: true });
+    }
+    rows.sort((a, b) => b.score - a.score);
+
+    document.getElementById('rankList').innerHTML = rows.slice(0, 6).map((r, i) => `
+      <div class="rank-row">
+        <div class="rank-num">${i + 1}</div>
+        <div>
+          <div class="rank-name">${r.name}</div>
+          <div class="rank-note">${r.note}</div>
+        </div>
+        <div class="rank-score">${fmt(r.score)}</div>
+      </div>
+    `).join('');
+
+    document.getElementById('todayMetric').textContent = fmt(todayScore);
+    document.getElementById('alltimeMetric').textContent = fmt(alltimeScore);
+    document.getElementById('tierMetric').textContent = tierFor(alltimeScore);
+
+    if (current) {
+      document.getElementById('yourSummary').innerHTML = `Your ${activeView === 'today' ? 'daily' : 'all-time'} record is <strong>${fmt(current)}/10</strong>. Current tier: <strong>${tierFor(current)}</strong>.`;
+    } else {
+      document.getElementById('yourSummary').textContent = activeView === 'today'
+        ? "No score saved for today yet. Play one round to enter today's board."
+        : 'No all-time score saved yet. Finish one TonTones round to create your first record.';
+    }
+  }
+
+  function updateClock() {
+    const now = new Date();
+    const next = new Date(now);
+    next.setHours(24, 0, 0, 0);
+    const ms = next - now;
+    const h = Math.floor(ms / 3600000);
+    const m = Math.floor((ms % 3600000) / 60000);
+    const s = Math.floor((ms % 60000) / 1000);
+    document.getElementById('resetClock').textContent = [h, m, s].map(n => String(n).padStart(2, '0')).join(':');
+  }
+
+  document.getElementById('todayTab').addEventListener('click', () => {
+    activeView = 'today';
+    document.getElementById('todayTab').classList.add('active');
+    document.getElementById('alltimeTab').classList.remove('active');
+    renderBoard();
+  });
+  document.getElementById('alltimeTab').addEventListener('click', () => {
+    activeView = 'alltime';
+    document.getElementById('alltimeTab').classList.add('active');
+    document.getElementById('todayTab').classList.remove('active');
+    renderBoard();
+  });
+
+  renderBoard();
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
+</body>
+</html>

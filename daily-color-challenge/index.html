@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Color Challenge — Same Five Shades for Everyone Today</title>
+  <meta name="description" content="Play the TonTones daily color challenge. Every player gets the same five shades today. Score 0–10, share your result, and challenge friends to beat you." />
+  <meta property="og:title" content="Daily Color Challenge — Same Five Shades for Everyone Today" />
+  <meta property="og:description" content="Today's TonTones daily challenge gives every player identical five shades. Compare your score, send challenge links, and track your daily best." />
+  <meta property="og:url" content="https://toontones.net/daily-color-challenge/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://toontones.net/og-image.png" />
+  <meta property="og:image:alt" content="TonTones daily color challenge" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://toontones.net/daily-color-challenge/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4DFBHWEQE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4DFBHWEQE');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the TonTones daily color challenge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The TonTones daily color challenge is a set of five color shades that every player sees on the same calendar day. Because the shades are identical for all players, scores are directly comparable without any coordination."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the daily challenge reset every day?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The five-shade set changes at midnight each day. A new set of colors is generated from the game library for each calendar date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I share my daily challenge score?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "After completing five rounds, the results screen shows buttons for X (Twitter), Threads, WhatsApp, and a copy link option. You can also download a poster card showing your round-by-round scores."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --lime: #c8ff00; --pink: #ff44cc; --cyan: #00e5ff;
+      --bg: #0c0a1e; --glass: rgba(255,255,255,0.07); --glass-b: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.5); --body: rgba(255,255,255,0.8);
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Arial, sans-serif; background: var(--bg); color: white; min-height: 100vh; line-height: 1.65; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; background: rgba(12,10,30,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-b); position: sticky; top: 0; z-index: 10; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 36px; height: 36px; background: linear-gradient(135deg, var(--lime) 0%, var(--cyan) 50%, var(--pink) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #0c0a1e; letter-spacing: -1px; flex-shrink: 0; }
+    .logo-name { font-size: 17px; font-weight: 700; color: white; }
+    .btn-play { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 14px; padding: 9px 20px; border-radius: 50px; text-decoration: none; }
+    .btn-play:hover { opacity: 0.9; text-decoration: none; }
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--muted); }
+    .kicker { display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--lime); margin-bottom: 12px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; }
+    h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 16px; }
+    h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    p { color: var(--body); margin-bottom: 16px; }
+    .hero-sub { font-size: 1.1rem; max-width: 640px; margin-bottom: 28px; }
+    .btn-primary { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; font-weight: 800; font-size: 15px; padding: 12px 28px; border-radius: 50px; text-decoration: none; display: inline-block; }
+    .btn-primary:hover { opacity: 0.9; text-decoration: none; }
+    section { margin-bottom: 56px; }
+    .highlight-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 20px; }
+    .highlight { padding: 22px 24px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 16px; text-align: center; }
+    .highlight .icon { font-size: 2rem; margin-bottom: 10px; }
+    .highlight h3 { font-size: 0.9rem; margin-bottom: 6px; }
+    .highlight p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+    .share-steps { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+    .share-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 20px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 14px; }
+    .share-step .icon { font-size: 1.4rem; flex-shrink: 0; }
+    .share-step h3 { font-size: 0.93rem; font-weight: 700; margin-bottom: 4px; }
+    .share-step p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+    details { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 14px; overflow: hidden; margin-bottom: 8px; }
+    summary { padding: 16px 20px; cursor: pointer; font-weight: 700; font-size: 0.97rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::after { content: '+'; font-size: 1.2rem; color: var(--muted); }
+    details[open] summary::after { content: '−'; }
+    details p { padding: 0 20px 16px; margin: 0; font-size: 0.93rem; color: var(--body); }
+    .related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .related-link { padding: 10px 18px; border-radius: 50px; background: var(--glass); border: 1px solid var(--glass-b); font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .related-link:hover { background: var(--glass-b); text-decoration: none; }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--glass-b); font-size: 13px; color: var(--muted); }
+    footer a { color: var(--muted); margin: 0 8px; }
+    footer a:hover { color: white; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/" title="Play TonTones color memory game">
+    <div class="logo-mark">Tt</div>
+    <span class="logo-name">TonTones</span>
+  </a>
+  <a class="btn-play" href="/" title="Play TonTones color memory game">▶ Play Today's Challenge</a>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="breadcrumb"><a href="/" title="Play TonTones color memory game">Home</a> › Daily Color Challenge</p>
+
+  <section>
+    <span class="kicker">Daily Challenge</span>
+    <h1>Daily Color Challenge: Five Shades, One Score</h1>
+    <p class="hero-sub">Every day TonTones generates a new set of five target shades. Every player on that calendar day sees the exact same five colors. That makes your score directly comparable to anyone else who plays — no coordination, no separate session link needed.</p>
+    <a class="btn-primary" href="/" title="Play TonTones color memory game">▶ Play Today's Five Shades</a>
+  </section>
+
+  <section>
+    <h2>How the Daily Challenge Works</h2>
+    <p>TonTones uses the current date as a seed to generate a consistent set of five shades for all players on that day. The seed changes at midnight, so each new calendar day brings a completely different five-shade set. Within a single day, every player — wherever they are and whatever time they open the game — receives the same five colors in the same order.</p>
+    <p>This matters because it makes the daily challenge genuinely competitive without any setup. You don't need to create a room, share a custom link first, or agree on settings with a friend. Open the game, complete five rounds, and your score is instantly comparable to anyone else's daily score.</p>
+    <p>The scoring system is the same as Classic mode. Each round measures the color distance between your guessed shade and the target shade, converts it to a 0–10 accuracy reading, and averages all five readings for your final score. The only difference from Classic is that you can't choose which shades you get — you play whatever the day's seed produces.</p>
+  </section>
+
+  <section>
+    <h2>Why the Daily Format Drives Better Play</h2>
+    <div class="highlight-row">
+      <div class="highlight">
+        <div class="icon">🎯</div>
+        <h3>Shared reference</h3>
+        <p>Everyone on the same five shades means one winner per day, not just a personal best.</p>
+      </div>
+      <div class="highlight">
+        <div class="icon">⚡</div>
+        <h3>Two-minute session</h3>
+        <p>Five rounds, no replays in daily mode. Fast enough to play before or after anything.</p>
+      </div>
+      <div class="highlight">
+        <div class="icon">📈</div>
+        <h3>Progress tracking</h3>
+        <p>Your today's best and all-time best are saved locally. Watch your score climb over weeks.</p>
+      </div>
+      <div class="highlight">
+        <div class="icon">🔗</div>
+        <h3>Challenge anyone</h3>
+        <p>Generate a challenge link post-game. Friends open it and play the same set you just finished.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to Share Your Daily Score</h2>
+    <div class="share-steps">
+      <div class="share-step">
+        <div class="icon">🎮</div>
+        <div>
+          <h3>Finish your five rounds</h3>
+          <p>Play all five shades and reach the results screen. Your per-round scores and final average are displayed here.</p>
+        </div>
+      </div>
+      <div class="share-step">
+        <div class="icon">📤</div>
+        <div>
+          <h3>Choose your share method</h3>
+          <p>Use the X, Threads, or WhatsApp buttons to post directly to your social feed. Or tap Copy Link to paste the result wherever you want.</p>
+        </div>
+      </div>
+      <div class="share-step">
+        <div class="icon">🖼️</div>
+        <div>
+          <h3>Download a poster card</h3>
+          <p>The Poster button generates a full-resolution image showing your five round scores, color swatches, and final average. Perfect for sharing as a story or image post.</p>
+        </div>
+      </div>
+      <div class="share-step">
+        <div class="icon">🎯</div>
+        <div>
+          <h3>Send a challenge link</h3>
+          <p>The Challenge button creates a unique URL. Anyone who opens it is taken straight into the same five-shade round you played. Their result is shown next to yours when they finish.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Daily Challenge vs Classic Mode</h2>
+    <p>Classic mode lets you replay as many times as you want, shuffling a new random set of five shades each time. It is better for practice, warming up, or learning how specific colors behave on the HSL sliders. Daily mode is better for competition and tracking — one attempt, real score, shareable result.</p>
+    <p>Most TonTones regulars start with the daily challenge the first time they open the game each day, then switch to Classic mode for additional practice rounds. The daily score goes on record regardless of how many Classic rounds you play afterward.</p>
+  </section>
+
+  <section>
+    <h2>Tips for a Strong Daily Score</h2>
+    <p>Because you only get one attempt in daily mode, slowing down on each shade is worth it. In Classic mode you can afford to guess loosely and learn from the feedback. In daily mode, every point counts. Take the full time you need to study each target shade before touching a slider.</p>
+    <p>The shades that cost players the most points in the daily challenge are mid-range neutrals — colors that are neither vivid nor grey, neither very light nor very dark. These tend to cluster in the 40–60% saturation range with 40–60% lightness. If a color looks "medium" in every direction, start at S=50 and L=50 and adjust from there rather than starting from an extreme.</p>
+  </section>
+
+  <section>
+    <h2>Frequently Asked Questions</h2>
+    <details open>
+      <summary>Is the daily challenge the same for all time zones?</summary>
+      <p>The daily set is determined by the calendar date at the moment you open the game in your local browser. Players in different time zones may be on different calendar dates and therefore see different five-shade sets.</p>
+    </details>
+    <details>
+      <summary>Can I replay the daily challenge?</summary>
+      <p>You can replay the game in Classic mode as many times as you want, but the daily set is designed as a single-attempt challenge. Your first completion score is saved as your daily best.</p>
+    </details>
+    <details>
+      <summary>What happens to my score if I close the tab mid-game?</summary>
+      <p>If you close the browser before reaching the results screen, the round is not saved. Reopen the game and it will start fresh with the same daily set still active for today.</p>
+    </details>
+    <details>
+      <summary>How is the daily set different from a challenge link?</summary>
+      <p>The daily set changes every calendar day automatically. A challenge link locks in a specific five-shade set permanently — anyone opening that link at any time plays the same five shades you played when you generated it, regardless of the date.</p>
+    </details>
+  </section>
+
+  <section>
+    <h2>Explore More</h2>
+    <div class="related-links">
+      <a class="related-link" href="/" title="Play TonTones color memory game">Play TonTones Now</a>
+      <a class="related-link" href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+      <a class="related-link" href="/how-to-play/" title="How to play TonTones color memory game">How to Play Guide</a>
+      <a class="related-link" href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+      <a class="related-link" href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+      <a class="related-link" href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <a href="/" title="Play TonTones color memory game">Home</a>
+  <a href="/tone-legends/" title="TonTones color challenge leaderboard">Tone Legends</a>
+  <a href="/how-to-play/" title="How to play TonTones color memory game">How to Play</a>
+  <a href="/daily-color-challenge/" title="Daily color challenge on TonTones">Daily Challenge</a>
+  <a href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+  <a href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+  <a href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+  <p style="margin-top:16px;">© TonTones · toontones.net · A free color memory game</p>
+</footer>
+
+</body>
+</html>
