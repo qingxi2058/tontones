@@ -262,6 +262,43 @@
       margin-bottom: 8px;
     }
     .info-card p { font-size: 0.9rem; margin-bottom: 0; }
+    .shade-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .shade-card {
+      min-height: 190px;
+      padding: 14px;
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      display: grid;
+      align-content: space-between;
+      gap: 12px;
+    }
+    .shade-swatch {
+      height: 74px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+    }
+    .shade-card strong {
+      display: block;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .shade-card code {
+      color: var(--lime);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .shade-card p {
+      font-size: 0.82rem;
+      line-height: 1.45;
+      margin-bottom: 0;
+    }
     .steps { display: grid; gap: 14px; margin-top: 18px; }
     .step {
       display: grid;
@@ -315,8 +352,12 @@
       .page-wrap { padding: 34px 18px 64px; }
       .game-panel { grid-template-columns: 1fr; padding: 16px; }
       .content-grid { grid-template-columns: 1fr; }
+      .shade-grid { grid-template-columns: 1fr; }
       .swatch-card { min-height: 138px; }
       h1 { letter-spacing: -1px; }
+    }
+    @media (min-width: 761px) and (max-width: 1040px) {
+      .shade-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
   </style>
 </head>
@@ -404,6 +445,53 @@
         <div class="label">Shareable</div>
         <h3>Challenge links</h3>
         <p>Send friends the same five-shade round and compare final scores after they finish.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cartoon Shade Examples to Practice</h2>
+    <p>Many players search for a color guessing game because they want specific shades to study, not only generic color theory. These original ToonTones prompts show the kind of cartoon-style colors you will be asked to remember in a full round.</p>
+    <div class="shade-grid">
+      <div class="shade-card">
+        <div class="shade-swatch" style="background:#e0193d;"></div>
+        <div>
+          <strong>Hero cape red</strong>
+          <code>H352 S76 L48</code>
+          <p>Looks bold, but the trick is keeping it slightly darker than pure red.</p>
+        </div>
+      </div>
+      <div class="shade-card">
+        <div class="shade-swatch" style="background:#34c8ce;"></div>
+        <div>
+          <strong>Robot visor teal</strong>
+          <code>H184 S72 L54</code>
+          <p>Start between blue and green, then raise saturation until it feels electric.</p>
+        </div>
+      </div>
+      <div class="shade-card">
+        <div class="shade-swatch" style="background:#704fc1;"></div>
+        <div>
+          <strong>Magic cloak purple</strong>
+          <code>H265 S58 L47</code>
+          <p>A common mistake is making it too bright. Pull lightness down first.</p>
+        </div>
+      </div>
+      <div class="shade-card">
+        <div class="shade-swatch" style="background:#f5cc33;"></div>
+        <div>
+          <strong>Sunny sidekick yellow</strong>
+          <code>H49 S92 L58</code>
+          <p>This shade is vivid and warm. Keep hue close to orange, not green.</p>
+        </div>
+      </div>
+      <div class="shade-card">
+        <div class="shade-swatch" style="background:#55da2f;"></div>
+        <div>
+          <strong>Alien slime green</strong>
+          <code>H103 S78 L48</code>
+          <p>Green guesses often go too yellow. Nudge hue toward 100 for balance.</p>
+        </div>
       </div>
     </div>
   </section>
