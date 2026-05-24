@@ -32,6 +32,7 @@ Study a shade, recreate it from memory with HSL sliders, and get a 0-10 color ac
 ## Pages
 
 - [Play ToonTones](https://toontones.net/)
+- [Toon Tone Game](https://toontones.net/toon-tone-game/)
 - [How to Play](https://toontones.net/how-to-play/)
 - [Color Memory Game](https://toontones.net/color-memory-game/)
 - [Color Accuracy Test](https://toontones.net/color-accuracy-test/)

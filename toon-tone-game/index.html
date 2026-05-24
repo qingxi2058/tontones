@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toon Tone Game - Free Color Memory Challenge | ToonTones</title>
+  <meta name="description" content="Play a free toon tone game on ToonTones. Match cartoon-style shades with HSL sliders, get a 0-10 color accuracy score, and share a challenge link." />
+  <meta property="og:title" content="Toon Tone Game - Free Color Memory Challenge | ToonTones" />
+  <meta property="og:description" content="A free browser toon tone game with HSL sliders, five-shade rounds, 0-10 scoring, and shareable challenges." />
+  <meta property="og:url" content="https://toontones.net/toon-tone-game/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://toontones.net/og-image.png" />
+  <meta property="og:image:alt" content="ToonTones toon tone game color memory challenge" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://toontones.net/toon-tone-game/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4DFBHWEQE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N4DFBHWEQE');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Toon Tone Game by ToonTones",
+    "url": "https://toontones.net/toon-tone-game/",
+    "applicationCategory": "Game",
+    "operatingSystem": "Web",
+    "description": "A free toon tone game where players match cartoon-style shades with HSL sliders and receive a 0-10 color accuracy score.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a toon tone game?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A toon tone game is a short color matching challenge where players use sliders to recreate cartoon-style shades from memory. ToonTones offers this format for free in the browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ToonTones free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. ToonTones is free to play, requires no signup, and works directly in modern desktop and mobile browsers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ToonTones affiliated with another toon tone game?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. ToonTones is an independent color memory game with its own brand, domain, scoring, and visual design."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --lime: #c8ff00;
+      --pink: #ff44cc;
+      --cyan: #00e5ff;
+      --bg: #0c0a1e;
+      --panel: rgba(255,255,255,0.075);
+      --line: rgba(255,255,255,0.13);
+      --muted: rgba(255,255,255,0.55);
+      --body: rgba(255,255,255,0.82);
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Arial, sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(0,229,255,0.18), transparent 32%),
+        radial-gradient(circle at 82% 16%, rgba(255,68,204,0.16), transparent 30%),
+        var(--bg);
+      color: white;
+      line-height: 1.65;
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 28px;
+      background: rgba(12,10,30,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--lime), var(--cyan) 50%, var(--pink));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 850;
+      color: #0c0a1e;
+      letter-spacing: -1px;
+      flex-shrink: 0;
+    }
+    .logo-name { color: white; font-size: 17px; font-weight: 750; }
+    .btn-play {
+      background: linear-gradient(135deg, var(--lime), var(--cyan));
+      color: #0c0a1e;
+      font-weight: 850;
+      font-size: 14px;
+      padding: 9px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-play:hover { opacity: 0.9; text-decoration: none; }
+    .page-wrap { max-width: 980px; margin: 0 auto; padding: 48px 24px 80px; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--muted); }
+    .kicker {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--lime);
+      margin-bottom: 12px;
+    }
+    h1 {
+      max-width: 780px;
+      font-size: clamp(2rem, 5vw, 3.15rem);
+      font-weight: 930;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+    h2 { font-size: 1.55rem; font-weight: 850; letter-spacing: -0.4px; margin-bottom: 16px; }
+    h3 { font-size: 1.05rem; font-weight: 750; margin-bottom: 8px; }
+    p { color: var(--body); margin-bottom: 16px; }
+    .hero-sub { max-width: 700px; font-size: 1.08rem; margin-bottom: 26px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-primary,
+    .btn-secondary,
+    button {
+      border: 0;
+      border-radius: 50px;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 850;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--lime), var(--cyan)); color: #0c0a1e; padding: 12px 26px; }
+    .btn-secondary { background: var(--panel); color: white; border: 1px solid var(--line); padding: 11px 22px; }
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    button:hover { opacity: 0.9; text-decoration: none; }
+    section { margin-bottom: 56px; }
+    .game-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 20px;
+      align-items: stretch;
+      padding: 22px;
+      background: rgba(255,255,255,0.065);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.28);
+    }
+    .swatch-stack { display: grid; gap: 14px; }
+    .swatch-card {
+      min-height: 180px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      display: grid;
+    }
+    .swatch-label {
+      align-self: start;
+      justify-self: start;
+      margin: 14px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.32);
+      color: white;
+      font-size: 12px;
+      font-weight: 750;
+    }
+    #targetSwatch, #guessSwatch { background: #68d3ff; }
+    #targetSwatch.hidden-target {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.11), rgba(255,255,255,0.04)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0 10px, rgba(0,0,0,0.05) 10px 20px);
+    }
+    .game-copy {
+      padding: 18px;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+    }
+    .prompt { color: white; font-weight: 760; margin-bottom: 8px; }
+    .small-note { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+    .controls { display: grid; gap: 15px; margin: 18px 0 20px; }
+    .control-row { display: grid; gap: 8px; }
+    .control-head { display: flex; justify-content: space-between; gap: 12px; color: var(--body); font-size: 13px; font-weight: 740; }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--lime);
+    }
+    .result-box {
+      min-height: 52px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--line);
+      color: var(--body);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .button-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .info-card {
+      padding: 20px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+    .info-card .label {
+      color: var(--lime);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 8px;
+    }
+    .info-card p { font-size: 0.9rem; margin-bottom: 0; }
+    .steps { display: grid; gap: 14px; margin-top: 18px; }
+    .step {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .step-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--lime), var(--cyan));
+      color: #0c0a1e;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+    .step p { font-size: 0.92rem; margin-bottom: 0; }
+    .faq-list { display: grid; gap: 8px; margin-top: 20px; }
+    details { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    summary { padding: 16px 20px; cursor: pointer; font-weight: 750; list-style: none; display: flex; justify-content: space-between; gap: 14px; }
+    summary::after { content: "+"; color: var(--muted); font-size: 1.1rem; }
+    details[open] summary::after { content: "-"; }
+    details p { padding: 0 20px 16px; margin: 0; font-size: 0.93rem; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .related-link {
+      padding: 10px 18px;
+      border-radius: 50px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      font-size: 14px;
+      font-weight: 650;
+      color: white;
+      text-decoration: none;
+    }
+    .related-link:hover { background: rgba(255,255,255,0.12); text-decoration: none; }
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); margin: 0 8px; }
+    footer a:hover { color: white; }
+    @media (max-width: 760px) {
+      nav { padding: 14px 18px; }
+      .page-wrap { padding: 34px 18px 64px; }
+      .game-panel { grid-template-columns: 1fr; padding: 16px; }
+      .content-grid { grid-template-columns: 1fr; }
+      .swatch-card { min-height: 138px; }
+      h1 { letter-spacing: -1px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/" title="Play ToonTones color memory game">
+    <div class="logo-mark">Tt</div>
+    <span class="logo-name">ToonTones</span>
+  </a>
+  <a class="btn-play" href="/" title="Play the full ToonTones color memory game">Play Full Game</a>
+</nav>
+
+<div class="page-wrap">
+  <p class="breadcrumb"><a href="/" title="Play ToonTones color memory game">Home</a> / Toon Tone Game</p>
+
+  <section>
+    <span class="kicker">Free browser color challenge</span>
+    <h1>Toon Tone Game: Free Color Memory Challenge</h1>
+    <p class="hero-sub">Play a toon tone game directly in your browser. Study a cartoon-style shade, recreate it with HSL sliders, and get a 0-10 color accuracy score. ToonTones is independent, free, and built for quick five-shade rounds.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="/" title="Play the full ToonTones color memory game">Play the Full 5-Round Game</a>
+      <a class="btn-secondary" href="/how-to-play/" title="Learn how to play ToonTones">How It Works</a>
+    </div>
+  </section>
+
+  <section aria-labelledby="warmup-title">
+    <h2 id="warmup-title">Try a One-Color Warm-Up</h2>
+    <p>This mini round shows the core toon tone loop on the page: memorize the target, adjust hue, saturation, and lightness, then submit your guess. Use the full game when you want five shades and shareable results.</p>
+
+    <div class="game-panel">
+      <div class="swatch-stack">
+        <div class="swatch-card" id="targetSwatch">
+          <span class="swatch-label">Target shade</span>
+        </div>
+        <div class="swatch-card" id="guessSwatch">
+          <span class="swatch-label">Your mix</span>
+        </div>
+      </div>
+
+      <div class="game-copy">
+        <p class="prompt" id="promptText">Prompt: Hero cape red</p>
+        <p class="small-note" id="timerText">Study the target, then press Start Warm-Up.</p>
+
+        <div class="controls" aria-label="HSL color controls">
+          <label class="control-row">
+            <span class="control-head"><span>Hue</span><span id="hVal">0</span></span>
+            <input id="hSlider" type="range" min="0" max="360" value="0" />
+          </label>
+          <label class="control-row">
+            <span class="control-head"><span>Saturation</span><span id="sVal">70</span></span>
+            <input id="sSlider" type="range" min="0" max="100" value="70" />
+          </label>
+          <label class="control-row">
+            <span class="control-head"><span>Lightness</span><span id="lVal">50</span></span>
+            <input id="lSlider" type="range" min="0" max="100" value="50" />
+          </label>
+        </div>
+
+        <div class="result-box" id="resultBox">Your score will appear here after you submit.</div>
+        <div class="button-row">
+          <button class="btn-primary" type="button" id="startBtn">Start Warm-Up</button>
+          <button class="btn-secondary" type="button" id="submitBtn">Submit Guess</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What Makes This a Toon Tone Game?</h2>
+    <p>A toon tone game is simple to understand but hard to master: you are not naming a character, solving trivia, or typing a color code. You are trying to remember the feel of a cartoon-style shade and rebuild it with sliders.</p>
+    <p>ToonTones keeps that format short and focused. A full round uses five shades, each scored from 0 to 10. The closer your HSL mix is to the target shade, the higher your accuracy score. It works as a quick browser game, a color memory trainer, and a small visual challenge for designers, artists, and animation fans.</p>
+    <div class="content-grid">
+      <div class="info-card">
+        <div class="label">Fast rounds</div>
+        <h3>Five shades, no signup</h3>
+        <p>Open the site, start a round, and finish in a few minutes. No account or install is needed.</p>
+      </div>
+      <div class="info-card">
+        <div class="label">Clear controls</div>
+        <h3>HSL sliders</h3>
+        <p>Hue chooses the color family, saturation controls intensity, and lightness controls brightness.</p>
+      </div>
+      <div class="info-card">
+        <div class="label">Shareable</div>
+        <h3>Challenge links</h3>
+        <p>Send friends the same five-shade round and compare final scores after they finish.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to Play the Full ToonTones Game</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Study the target color</h3>
+          <p>Look at the shade for a few seconds. Try to name it mentally: warm red, muted teal, pale yellow, deep purple, or another color family.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Recreate it with HSL sliders</h3>
+          <p>Set hue first, then saturation, then lightness. Most misses come from rushing brightness, so slow down before confirming.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Check your 0-10 score</h3>
+          <p>After each guess, ToonTones compares your shade to the target and gives a score. A full run averages five scores into one result.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h3>Share or replay</h3>
+          <p>Use the challenge link to let friends play the same five colors, or try another run to improve your color memory.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tips for Better Toon Tone Scores</h2>
+    <p>Start with the color family. If hue is wrong, saturation and lightness cannot save the round. Once the family feels right, lower saturation if the shade looks dusty or raise it if the shade feels vivid. Save lightness for the final adjustment.</p>
+    <p>Use the reveal as feedback. If your guess is consistently too bright, train yourself to pull lightness down before submitting. If your colors look too neon, lower saturation. Color memory improves when every wrong guess teaches one specific correction.</p>
+  </section>
+
+  <section>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details open>
+        <summary>Is this the official Toon Tone game?</summary>
+        <p>ToonTones is an independent game at toontones.net. It serves the same search intent as a toon tone game: a free browser color matching challenge with sliders, scoring, and short rounds.</p>
+      </details>
+      <details>
+        <summary>Does ToonTones require an account?</summary>
+        <p>No. You can play immediately in the browser. Scores are stored locally on your device, and the site does not require a login.</p>
+      </details>
+      <details>
+        <summary>Can I play on mobile?</summary>
+        <p>Yes. ToonTones works on modern mobile browsers. The HSL sliders are touch-friendly, and the full game is designed for short sessions.</p>
+      </details>
+      <details>
+        <summary>What if I searched for toon toon or toon tones?</summary>
+        <p>You are probably looking for the same kind of casual color guessing loop. ToonTones covers that intent with its own brand, pages, and gameplay.</p>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <h2>Explore More ToonTones Pages</h2>
+    <div class="related-links">
+      <a class="related-link" href="/" title="Play ToonTones color memory game">Play ToonTones Now</a>
+      <a class="related-link" href="/how-to-play/" title="How to play ToonTones color memory game">How to Play</a>
+      <a class="related-link" href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+      <a class="related-link" href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+      <a class="related-link" href="/daily-color-challenge/" title="Daily color challenge on ToonTones">Daily Challenge</a>
+      <a class="related-link" href="/tone-legends/" title="ToonTones color challenge leaderboard">Tone Legends</a>
+      <a class="related-link" href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <a href="/" title="Play ToonTones color memory game">Home</a>
+  <a href="/toon-tone-game/" title="Free toon tone game by ToonTones">Toon Tone Game</a>
+  <a href="/how-to-play/" title="How to play ToonTones color memory game">How to Play</a>
+  <a href="/toon-tone-alternative/" title="Toon Tone alternative color memory game">Toon Tone Alternative</a>
+  <a href="/color-memory-game/" title="Color memory game guide and practice">Color Memory Game</a>
+  <a href="/daily-color-challenge/" title="Daily color challenge on ToonTones">Daily Challenge</a>
+  <a href="/tone-legends/" title="ToonTones color challenge leaderboard">Tone Legends</a>
+  <a href="/color-accuracy-test/" title="Color accuracy test with HSL sliders">Color Accuracy Test</a>
+  <a href="https://findly.tools/toontones?utm_source=toontones" target="_blank" style="display:inline-block; margin-top:16px;">
+    <img src="https://findly.tools/badges/findly-tools-badge-light.svg" alt="Featured on Findly.tools" width="150" />
+  </a>
+  <p style="margin-top:16px;">&copy; ToonTones · toontones.net · A free color memory game</p>
+</footer>
+
+<script>
+  const prompts = [
+    { name: "Hero cape red", h: 352, s: 76, l: 48 },
+    { name: "Robot visor teal", h: 184, s: 72, l: 54 },
+    { name: "Magic cloak purple", h: 265, s: 58, l: 47 },
+    { name: "Sunny sidekick yellow", h: 49, s: 92, l: 58 },
+    { name: "Alien slime green", h: 103, s: 78, l: 48 }
+  ];
+
+  const targetSwatch = document.getElementById("targetSwatch");
+  const guessSwatch = document.getElementById("guessSwatch");
+  const promptText = document.getElementById("promptText");
+  const timerText = document.getElementById("timerText");
+  const resultBox = document.getElementById("resultBox");
+  const hSlider = document.getElementById("hSlider");
+  const sSlider = document.getElementById("sSlider");
+  const lSlider = document.getElementById("lSlider");
+  const hVal = document.getElementById("hVal");
+  const sVal = document.getElementById("sVal");
+  const lVal = document.getElementById("lVal");
+  const startBtn = document.getElementById("startBtn");
+  const submitBtn = document.getElementById("submitBtn");
+
+  let target = prompts[0];
+  let targetHidden = false;
+
+  function hslString(color) {
+    return `hsl(${color.h} ${color.s}% ${color.l}%)`;
+  }
+
+  function currentGuess() {
+    return {
+      h: Number(hSlider.value),
+      s: Number(sSlider.value),
+      l: Number(lSlider.value)
+    };
+  }
+
+  function updateGuess() {
+    const guess = currentGuess();
+    hVal.textContent = guess.h;
+    sVal.textContent = guess.s;
+    lVal.textContent = guess.l;
+    guessSwatch.style.background = hslString(guess);
+  }
+
+  function setTarget(nextTarget) {
+    target = nextTarget;
+    promptText.textContent = `Prompt: ${target.name}`;
+    targetSwatch.classList.remove("hidden-target");
+    targetSwatch.style.background = hslString(target);
+    targetHidden = false;
+  }
+
+  function startWarmup() {
+    const next = prompts[Math.floor(Math.random() * prompts.length)];
+    setTarget(next);
+    resultBox.textContent = "Memorize this shade. It will hide in 3 seconds.";
+    timerText.textContent = "Study the target now.";
+    startBtn.disabled = true;
+
+    window.setTimeout(() => {
+      targetSwatch.classList.add("hidden-target");
+      targetSwatch.style.background = "";
+      targetHidden = true;
+      timerText.textContent = "Target hidden. Mix the shade from memory, then submit.";
+      resultBox.textContent = "Adjust H, S, and L until your mix feels right.";
+      startBtn.disabled = false;
+    }, 3000);
+  }
+
+  function hueDistance(a, b) {
+    const diff = Math.abs(a - b);
+    return Math.min(diff, 360 - diff) / 180;
+  }
+
+  function submitGuess() {
+    const guess = currentGuess();
+    const hDiff = hueDistance(guess.h, target.h);
+    const sDiff = Math.abs(guess.s - target.s) / 100;
+    const lDiff = Math.abs(guess.l - target.l) / 100;
+    const weighted = (hDiff * 0.55) + (sDiff * 0.2) + (lDiff * 0.25);
+    const score = Math.max(0, 10 - (weighted * 10)).toFixed(2);
+
+    targetSwatch.classList.remove("hidden-target");
+    targetSwatch.style.background = hslString(target);
+    targetHidden = false;
+    timerText.textContent = "Target revealed. Start another warm-up or play the full game.";
+    resultBox.textContent = `Score: ${score}/10. Target H${target.h} S${target.s} L${target.l}. Your guess H${guess.h} S${guess.s} L${guess.l}.`;
+  }
+
+  [hSlider, sSlider, lSlider].forEach((slider) => {
+    slider.addEventListener("input", updateGuess);
+  });
+  startBtn.addEventListener("click", startWarmup);
+  submitBtn.addEventListener("click", submitGuess);
+
+  setTarget(target);
+  updateGuess();
+</script>
+
+</body>
+</html>
