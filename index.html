@@ -1228,7 +1228,7 @@
   let H = 180, S = 70, L = 50;
   let round = 0, roundData = [], gameChars = [];
   let soundOn = true, activeStrip = null;
-  let isChallengeMode = false, challengeTargetScore = null;
+  let isChallengeMode = false, isDailyMode = false, challengeTargetScore = null;
   const STORAGE_KEY = 'toontones';
   const LEGACY_STORAGE_KEY = ['ton', 'tones'].join('');
 
@@ -1339,14 +1339,37 @@
     return a;
   }
 
+  function seededShuffle(arr, seed) {
+    const a = [...arr];
+    let x = seed >>> 0;
+    for (let i = a.length - 1; i > 0; i--) {
+      x = (x * 1664525 + 1013904223) >>> 0;
+      const j = x % (i + 1);
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function dailySeed() {
+    const d = new Date();
+    return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+  }
+
   function startGame(challengeData = null) {
-    if (challengeData) {
+    if (challengeData?.mode === 'daily') {
+      gameChars = seededShuffle(PALETTE, dailySeed()).slice(0, 5);
+      isChallengeMode = false;
+      isDailyMode = true;
+      challengeTargetScore = null;
+    } else if (challengeData) {
       gameChars = challengeData.indices.map(i => PALETTE[i]);
       isChallengeMode = true;
+      isDailyMode = false;
       challengeTargetScore = challengeData.score;
     } else {
       gameChars = shuffle(PALETTE).slice(0, 5);
       isChallengeMode = false;
+      isDailyMode = false;
       challengeTargetScore = null;
     }
     round = 0; roundData = [];
@@ -1362,6 +1385,9 @@
     const banner = document.getElementById('challengeBanner');
     if (isChallengeMode) {
       banner.textContent = `🎯 Beat ${challengeTargetScore.toFixed(2)} to win!`;
+      banner.classList.add('active');
+    } else if (isDailyMode) {
+      banner.textContent = `📅 Daily challenge: everyone gets today's same five shades.`;
       banner.classList.add('active');
     } else {
       banner.classList.remove('active');
@@ -1796,6 +1822,17 @@
       sub.after(msg);
     }
     btn.onclick = () => { tone(523, 0.12); startGame(_challenge); };
+  } else if (new URLSearchParams(location.search).get('mode') === 'daily') {
+    const btn = document.getElementById('btnStart');
+    btn.textContent = `▶ Play Today's Five Shades`;
+    const sub = document.querySelector('.scores-mini');
+    if (sub) {
+      const msg = document.createElement('div');
+      msg.style.cssText = 'margin-top:12px;padding:10px 16px;background:rgba(200,255,0,0.12);border:1px solid rgba(200,255,0,0.35);border-radius:14px;font-size:13px;font-weight:800;color:#c8ff00;text-align:center;';
+      msg.textContent = `📅 Daily mode is ready: today's same five shades.`;
+      sub.after(msg);
+    }
+    btn.onclick = () => { tone(523, 0.12); startGame({ mode: 'daily' }); };
   }
 </script>
 </body>

@@ -21,6 +21,38 @@
     gtag('js', new Date());
     gtag('config', 'G-N4DFBHWEQE');
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a color accuracy test?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A color accuracy test measures how closely you can reproduce a target color. ToonTones does this by showing a shade, hiding it, and scoring your HSL slider match from 0 to 10."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ToonTones a clinical color vision test?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. ToonTones is a browser color memory game and practice test, not a medical or clinical color vision exam."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I improve my ToonTones color accuracy score?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Study the target shade for a few seconds, set hue first, then adjust saturation and lightness. Replaying short rounds helps you build better color recall."
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -65,6 +97,10 @@
     .tip-item { display: flex; gap: 14px; align-items: flex-start; padding: 16px 20px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 14px; }
     .tip-item .num { width: 28px; height: 28px; border-radius: 50%; background: var(--lime); color: #0c0a1e; font-weight: 900; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .tip-item p { font-size: 0.9rem; color: var(--body); margin: 0; }
+    .faq-list { display: grid; gap: 12px; margin-top: 18px; }
+    .faq-list details { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 14px; padding: 16px 20px; }
+    .faq-list summary { cursor: pointer; font-weight: 800; color: white; }
+    .faq-list p { margin: 10px 0 0; font-size: 0.94rem; }
     .cta-block { padding: 32px; background: linear-gradient(135deg, rgba(200,255,0,0.1), rgba(0,229,255,0.1)); border: 1px solid rgba(200,255,0,0.2); border-radius: 20px; text-align: center; }
     .cta-block h2 { margin-bottom: 12px; }
     .cta-block p { margin-bottom: 20px; }
@@ -213,6 +249,24 @@
         <div class="num">6</div>
         <p><strong>Play the daily challenge for accountability.</strong> Classic mode lets you replay and improve on the same shades. The daily challenge forces you to commit to one attempt per day, which makes the score more meaningful as a personal benchmark over time.</p>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Color Accuracy Test FAQ</h2>
+    <div class="faq-list">
+      <details open>
+        <summary>What is a color accuracy test?</summary>
+        <p>A color accuracy test measures how closely you can reproduce a target color. ToonTones shows you one shade at a time, hides it, and scores your HSL slider match from 0 to 10.</p>
+      </details>
+      <details>
+        <summary>Is ToonTones a clinical color vision test?</summary>
+        <p>No. ToonTones is a browser color memory game and practice test. It can help you notice how precise your color recall feels, but it is not a medical or clinical color vision exam.</p>
+      </details>
+      <details>
+        <summary>How can I improve my ToonTones color accuracy score?</summary>
+        <p>Study the target shade for a few seconds, set hue first, then adjust saturation and lightness. Short repeated rounds are the fastest way to build better color recall.</p>
+      </details>
     </div>
   </section>
 
