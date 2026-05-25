@@ -133,6 +133,72 @@
       white-space: nowrap;
     }
     .btn-play:hover { opacity: 0.9; text-decoration: none; }
+    .challenge-strip {
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(200,255,0,0.12), rgba(0,229,255,0.08), rgba(255,68,204,0.1)),
+        rgba(255,255,255,0.035);
+    }
+    .challenge-strip-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: center;
+    }
+    .challenge-copy { display: grid; gap: 4px; }
+    .challenge-badge {
+      justify-self: start;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(200,255,0,0.45);
+      color: var(--lime);
+      background: rgba(12,10,30,0.46);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .challenge-strip h2 {
+      margin: 0;
+      font-size: clamp(1.15rem, 3vw, 1.45rem);
+      letter-spacing: -0.2px;
+      line-height: 1.18;
+    }
+    .challenge-strip p {
+      margin: 0;
+      color: rgba(255,255,255,0.76);
+      font-size: 0.95rem;
+    }
+    .challenge-side {
+      display: grid;
+      justify-items: end;
+      gap: 10px;
+    }
+    .challenge-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .challenge-meta span {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(12,10,30,0.42);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.72);
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+    .challenge-action {
+      padding: 10px 18px;
+      background: linear-gradient(135deg, var(--lime), var(--cyan));
+      color: #0c0a1e;
+      box-shadow: 0 12px 28px rgba(0,229,255,0.12);
+    }
     .page-wrap { max-width: 980px; margin: 0 auto; padding: 48px 24px 80px; }
     .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
     .breadcrumb a { color: var(--muted); }
@@ -349,6 +415,9 @@
     footer a:hover { color: white; }
     @media (max-width: 760px) {
       nav { padding: 14px 18px; }
+      .challenge-strip-inner { grid-template-columns: 1fr; padding: 16px 18px; gap: 14px; }
+      .challenge-side { justify-items: start; }
+      .challenge-meta { justify-content: flex-start; }
       .page-wrap { padding: 34px 18px 64px; }
       .game-panel { grid-template-columns: 1fr; padding: 16px; }
       .content-grid { grid-template-columns: 1fr; }
@@ -371,6 +440,24 @@
   <a class="btn-play" href="/" title="Play the full ToonTones color memory game">Play Full Game</a>
 </nav>
 
+<section class="challenge-strip" aria-labelledby="spotlight-title">
+  <div class="challenge-strip-inner">
+    <div class="challenge-copy">
+      <span class="challenge-badge">Today's Warm-Up</span>
+      <h2 id="spotlight-title">Try one toon tone before the full game</h2>
+      <p id="spotlightPrompt">What is the color of Hero cape red?</p>
+    </div>
+    <div class="challenge-side">
+      <div class="challenge-meta" aria-label="Game quick facts">
+        <span>5 shades</span>
+        <span>0-10 score</span>
+        <span>No signup</span>
+      </div>
+      <button class="challenge-action" type="button" id="spotlightStartBtn">Start This Shade</button>
+    </div>
+  </div>
+</section>
+
 <div class="page-wrap">
   <p class="breadcrumb"><a href="/" title="Play ToonTones color memory game">Home</a> / Toon Tone Game</p>
 
@@ -384,7 +471,7 @@
     </div>
   </section>
 
-  <section aria-labelledby="warmup-title">
+  <section id="warmup" aria-labelledby="warmup-title">
     <h2 id="warmup-title">Try a One-Color Warm-Up</h2>
     <p>This mini round shows the core toon tone loop on the page: memorize the target, adjust hue, saturation, and lightness, then submit your guess. Use the full game when you want five shades and shareable results.</p>
 
@@ -598,6 +685,9 @@
 
   const targetSwatch = document.getElementById("targetSwatch");
   const guessSwatch = document.getElementById("guessSwatch");
+  const spotlightPrompt = document.getElementById("spotlightPrompt");
+  const spotlightStartBtn = document.getElementById("spotlightStartBtn");
+  const warmupSection = document.getElementById("warmup");
   const promptText = document.getElementById("promptText");
   const timerText = document.getElementById("timerText");
   const resultBox = document.getElementById("resultBox");
@@ -636,13 +726,14 @@
   function setTarget(nextTarget) {
     target = nextTarget;
     promptText.textContent = `Prompt: ${target.name}`;
+    spotlightPrompt.textContent = `What is the color of ${target.name}?`;
     targetSwatch.classList.remove("hidden-target");
     targetSwatch.style.background = hslString(target);
     targetHidden = false;
   }
 
-  function startWarmup() {
-    const next = prompts[Math.floor(Math.random() * prompts.length)];
+  function startWarmup(nextPrompt) {
+    const next = nextPrompt || prompts[Math.floor(Math.random() * prompts.length)];
     setTarget(next);
     resultBox.textContent = "Memorize this shade. It will hide in 3 seconds.";
     timerText.textContent = "Study the target now.";
@@ -681,7 +772,11 @@
   [hSlider, sSlider, lSlider].forEach((slider) => {
     slider.addEventListener("input", updateGuess);
   });
-  startBtn.addEventListener("click", startWarmup);
+  startBtn.addEventListener("click", () => startWarmup());
+  spotlightStartBtn.addEventListener("click", () => {
+    warmupSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    startWarmup(target);
+  });
   submitBtn.addEventListener("click", submitGuess);
 
   setTarget(target);
